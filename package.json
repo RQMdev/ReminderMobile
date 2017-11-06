@@ -1,0 +1,30 @@
+{
+  "name": "my-new-project",
+  "version": "0.0.0",
+  "description": "Hello Expo!",
+  "author": null,
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "dependencies": {
+    "expo": "^18.0.4",
+    "lodash": "^4.17.4",
+    "react": "16.0.0-alpha.12",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-18.0.1.tar.gz",
+    "react-native-action-button": "^2.7.2",
+    "react-native-elements": "^0.15.0",
+    "react-native-modal": "^2.5.0",
+    "react-native-prompt": "^1.0.0",
+    "react-native-scripts": "^1.7.0",
+    "watchman": "^0.1.8"
+  },
+  "devDependencies": {
+    "eslint-config-rallycoding": "^3.2.0"
+  }
+}
