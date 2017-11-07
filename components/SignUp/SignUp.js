@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 
-export default class App extends React.Component {
+export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
