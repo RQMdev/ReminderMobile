@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import LoginForm from './components/Login/LoginForm.js';
+import SignUpForm from './components/SignUpForm/SignUpForm';
 
 export default class App extends React.Component {
   render() {
@@ -15,7 +15,7 @@ export default class App extends React.Component {
              <Text style={styles.title}> Inscription </Text>
       </View>
       <View style={styles.formContainer}>
-      <LoginForm />
+      <SignUpForm />
       </View>
     </View>
 

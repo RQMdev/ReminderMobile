@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View , TextInput, TouchableOpacity, Text } from 'react-native';
 
-export default class LoginForm extends React.Component {
+export default class SignUpForm extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import Login from './components/Login/Login';
+import SignIn from './components/SignIn/SignIn';
 import { StackNavigator } from 'react-navigation';
 
 import Dashboard from './components/Reminder/Dashboard';
 
 const NavigationApp = StackNavigator({
-    Login: { screen: Login },
+    SignIn: { screen: SignIn },
     Dashboard: { screen: Dashboard },
 }, /*{ navigationOptions: {
         headerStyle: {
