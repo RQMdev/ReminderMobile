@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput,TouchableOpacity, Text, Image } from 'react
 
 export default class LoginForm extends Component {
 		render() {
+           const { navigate } = this.props.navigation;
 	       return (
 			<View style={styles.container}>
 				 <TextInput
@@ -18,7 +19,7 @@ export default class LoginForm extends Component {
 				 	/>
 				<View>
 					<View style={styles.flecheContainer}>
-					<TouchableOpacity style={styles.buttonFleche}>
+					<TouchableOpacity style={styles.buttonFleche} onPress = {() => navigate('Dashboard')}>
 					  <Image
 				  	  style={styles.Fleche}
 				  	  source={require('./images/Fleche.png')}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListItem, Badge } from 'react-native-elements';
-import { TASK } from '../../model';
-import { APP_COLORS } from '../../styles/color';
+import { TASK } from './../../../model';
+import { APP_COLORS } from './../../../styles/color';
 import { style } from './style';
 
 const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
