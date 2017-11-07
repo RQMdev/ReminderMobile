@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput,TouchableOpacity, Text, Image } from 'react-native';
 
-export default class LoginForm extends Component {
+export default class SignInForm extends Component {
 		render() {
            const { navigate } = this.props.navigation;
 	       return (
@@ -22,7 +22,7 @@ export default class LoginForm extends Component {
 					<TouchableOpacity style={styles.buttonFleche} onPress = {() => navigate('Dashboard')}>
 					  <Image
 				  	  style={styles.Fleche}
-				  	  source={require('./images/Fleche.png')}
+				  	  source={require('../../assets/img/Fleche.png')}
 				  	  />
 				  	  </TouchableOpacity>
 				  	  </View>

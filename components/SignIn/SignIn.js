@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
-import LoginForm from './LoginForm';
+import SignInForm from './SignInForm';
 
-export default class Login extends Component {
+export default class SignIn extends Component {
 	constructor(props) {
 		super(props);
 		this.state={};
@@ -24,7 +24,7 @@ export default class Login extends Component {
 		  	  <Text style={styles.title}> Connexion </Text>
 		    </View>
 		  	<View style={styles.formContainer}>
-		  		<LoginForm navigation={this.props.navigation}/>
+		  		<SignInForm navigation={this.props.navigation}/>
 	      </View>
 		  </View>
     );
