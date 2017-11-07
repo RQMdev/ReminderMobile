@@ -18,7 +18,7 @@ export default class Login extends Component {
 		  	<View style={styles.logoContainer}>
 		  	  <Image
 		  	  style={styles.logo}
-		  	  source={require('./images/logotype2.png')}
+		  	  source={require('../../assets/img/logotype2.png')}
 		  	  onPress={this.onPressButton}
 		  	  />
 		  	  <Text style={styles.title}> Connexion </Text>
