@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import LoginForm from './components/Login/LoginForm.js';
+import SignUpForm from './components/SignUpForm/SignUpForm';
 
-export default class App extends React.Component {
+export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
             <View style={styles.logoContainer}>
          <Image
               style ={styles.logo}
-             source = {require('./assets/logotype.png')} style = {styles.image} 
+             source = {require('../../assets/logotype.png')} style = {styles.image} 
              />
 
              <Text style={styles.title}> Inscription </Text>
       </View>
       <View style={styles.formContainer}>
-      <LoginForm />
+      <SignUpForm />
       </View>
     </View>
 

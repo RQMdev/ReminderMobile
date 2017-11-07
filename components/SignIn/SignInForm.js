@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput,TouchableOpacity, Text, Image } from 'react-native';
 
-export default class LoginForm extends Component {
+export default class SignInForm extends Component {
 		render() {
            const { navigate } = this.props.navigation;
 	       return (
