@@ -22,7 +22,7 @@ export default class SignInForm extends Component {
 					<TouchableOpacity style={styles.buttonFleche} onPress = {() => navigate('Dashboard')}>
 					  <Image
 				  	  style={styles.Fleche}
-				  	  source={require('../../assets/img/Fleche.png')}
+				  	  source={require('../../../assets/img/Fleche.png')}
 				  	  />
 				  	  </TouchableOpacity>
 				  	  </View>
