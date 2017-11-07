@@ -1,17 +1,17 @@
 import React from 'react';
 import lodash from 'lodash';
 import { View, ScrollView, Text, AsyncStorage, Image } from 'react-native';
-import ButtonAddTask from './components/button-add-task';
-import Header from './components/header';
-import TaskList from './components/task-list';
-import MenuTask from './components/menu-task';
-import { TASK } from './model';
-import TextPrompt from './components/text-prompt';
-import { style } from './style.js';
+import ButtonAddTask from './button-add-task';
+import Header from './header';
+import TaskList from './task-list';
+import MenuTask from './menu-task';
+import { TASK } from './../../model';
+import TextPrompt from './text-prompt';
+import { style } from './../../style.js';
 
 const storageKey = 'taskList';
 
-export default class App extends React.Component {
+export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -36,7 +36,7 @@ import LoginForm from './LoginForm';
 				  	  <Text style={styles.title}> Connexion </Text>
 				    </View>
 				  	<View style={styles.formContainer}>
-				  		<LoginForm />
+				  		<LoginForm navigation={this.props.navigation}/>
 			      </View>
 			  </View>
             );
