@@ -7,7 +7,6 @@ import LoginForm from './LoginForm';
     export default class Login extends Component {
 
 
-
     	constructor(props) {
     		super (props);
     		this.state={};
@@ -18,9 +17,6 @@ import LoginForm from './LoginForm';
     	onPressButton= () => {
     		this.setState({});
     	}
-
-
-
 
 
 
