@@ -1,19 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Motdepasse from './components/MDP/Motdepasse.js';
+import SignUpForm from './SignUpForm';
 
-export default class ForgotPassword extends React.Component {
+export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
             <View style={styles.logoContainer}>
          <Image
               style ={styles.logo}
-             source = {require('../../img/logotype.png')} style = {styles.image} 
+             source = {require('../../assets/logotype.png')} style = {styles.image}
              />
 
-             <Text style={styles.title}> Récuperer mon mot de passe </Text>
-             <Motdepasse />
+             <Text style={styles.title}> Inscription </Text>
+      </View>
+      <View style={styles.formContainer}>
+      <SignUpForm />
       </View>
     </View>
 
@@ -31,8 +33,7 @@ const styles = StyleSheet.create({
 logoContainer: {
   alignItems: 'center',
   flexGrow: 1,
-  paddingTop: 170,
-  marginBottom: 40
+  paddingTop: 80
 },
 
 title: {
@@ -40,8 +41,7 @@ title: {
   marginTop: 20,
   textAlign: 'center',
   fontSize: 24,
-  fontFamily: 'sans-serif',
-  paddingBottom: 40
+  fontFamily: 'sans-serif'
 
 }
 });
