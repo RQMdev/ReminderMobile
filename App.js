@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation';
 import Dashboard from './components/Reminder/Dashboard';
 
 const NavigationApp = StackNavigator({
-    Connexion: { screen: Login },
+    Login: { screen: Login },
     Dashboard: { screen: Dashboard },
 }, /*{ navigationOptions: {
         headerStyle: {
@@ -24,7 +24,7 @@ const NavigationApp = StackNavigator({
 
 
 export default class GithubApp extends Component {
-   
+
    render() {
     return (
       <NavigationApp />
