@@ -19,12 +19,16 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
               containerStyle={
                 task.status === TASK.todoStatus
                   ? { backgroundColor: APP_COLORS.accent }
-                  : { backgroundColor: APP_COLORS.lightPrimaryColor } 
+                  : { backgroundColor: APP_COLORS.lightPrimaryColor }
               }
             />
           )
         }}
+<<<<<<< HEAD
   
+=======
+        hideChevron={true}
+>>>>>>> 11d1e4ef1805c781bb60c98d5e98a306a5f40a77
       />
     ))}
 </List>
