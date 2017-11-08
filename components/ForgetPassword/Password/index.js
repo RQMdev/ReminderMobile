@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
 	},
 
 	input: {
-		width: 300,
-		marginBottom: 160,
+		width: 250,
+		marginBottom: 80,
 		height: 45,
 		backgroundColor: '#F5F5F5',
 		color: "#333333",
@@ -53,3 +53,5 @@ const styles = StyleSheet.create({
 	}
 
 });
+
+
