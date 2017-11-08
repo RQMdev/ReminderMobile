@@ -24,11 +24,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
             />
           )
         }}
-<<<<<<< HEAD
-  
-=======
         hideChevron={true}
->>>>>>> 11d1e4ef1805c781bb60c98d5e98a306a5f40a77
       />
     ))}
 </List>
