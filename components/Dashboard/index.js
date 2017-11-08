@@ -2,7 +2,7 @@ import React from 'react';
 import lodash from 'lodash';
 import { View, ScrollView, Text, AsyncStorage, Image } from 'react-native';
 import ButtonAddTask from './button-add-task';
-import Header from './header';
+import Header from './Header';
 import TaskList from './task-list';
 import MenuTask from './menu-task';
 import { TASK } from './../../model';
