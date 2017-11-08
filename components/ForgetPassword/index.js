@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
 logoContainer: {
   alignItems: 'center',
   flexGrow: 1,
-  paddingTop: 170,
+  paddingTop: 100,
   marginBottom: 40
 },
 
 title: {
   color: '#F5F5F5',
-  marginTop: 20,
+  marginTop: 50,
   textAlign: 'center',
-  fontSize: 24,
+  fontSize: 15,
   fontFamily: 'sans-serif',
   paddingBottom: 40
 
