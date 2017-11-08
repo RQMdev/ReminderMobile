@@ -9,13 +9,13 @@ export default class SignUp extends React.Component {
             <View style={styles.logoContainer}>
          <Image
               style ={styles.logo}
-             source = {require('./../../assets/img/logotype.png')} style = {styles.image}
+             source = {require('./../../assets/img/logotype2.png')} style = {styles.image}
              />
 
              <Text style={styles.title}> Inscription </Text>
       </View>
       <View style={styles.formContainer}>
-      <SignUpForm />
+      <SignUpForm navigation={this.props.navigation} />
       </View>
     </View>
 
