@@ -9,7 +9,7 @@ export default class ForgotPassword extends React.Component {
             <View style={styles.logoContainer}>
          <Image
               style ={styles.logo}
-             source = {require('../../img/logotype.png')} style = {styles.image}
+             source = {require('../../assets/img/logotype.png')} style = {styles.image}
              />
 
              <Text style={styles.title}> Récuperer mon mot de passe </Text>
