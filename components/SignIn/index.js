@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import SignInForm from './SignInForm';
 
 export default class SignIn extends Component {
@@ -14,7 +14,9 @@ export default class SignIn extends Component {
 
 	render() {
     return (
-		  <View style={styles.container}>
+    	<KeyboardAvoidingView style={styles.container} behavior="padding">
+
+		  <ScrollView >
 		  	<View style={styles.logoContainer}>
 		  	  <Image
 		  	  style={styles.logo}
@@ -26,7 +28,9 @@ export default class SignIn extends Component {
 		  	<View style={styles.formContainer}>
 		  		<SignInForm navigation={this.props.navigation}/>
 	      </View>
-		  </View>
+		  </ScrollView>
+
+		</KeyboardAvoidingView>
     );
 	}
 }

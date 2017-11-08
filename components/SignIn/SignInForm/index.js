@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput,TouchableOpacity, Text, Image } from 'react-native';
 
+
 export default class SignInForm extends Component {
 		render() {
            const { navigate } = this.props.navigation;
 	       return (
-			<View style={styles.container}>
+			<View style={styles.container} >
 				 <TextInput
 				 underlineColorAndroid='transparent'
 				 placeholder="email"
