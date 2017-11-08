@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View , TextInput, TouchableOpacity, Text } from 'react-native';
-import { SERVER_IP } from './../../../serverConfig';
+import { SERVER_IP } from './../../../ServerConfig';
 
 export default class SignUpForm extends React.Component {
 	constructor(props) {
