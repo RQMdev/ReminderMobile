@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
 import SignUpForm from './SignUpForm';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default class SignUp extends React.Component {
   render() {
