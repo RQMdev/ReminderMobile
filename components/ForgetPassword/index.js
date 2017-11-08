@@ -1,22 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import Password from './Password';
 
 export default class ForgotPassword extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-            <View style={styles.logoContainer}>
-         <Image
-              style ={styles.logo}
-             source = {require('../../assets/img/logotype2.png')} style = {styles.image}
-             />
+     
+        <ScrollView style={styles.container}>
+          <View style={styles.logoContainer}>
+           <Image
+            style ={styles.logo}
+            source = {require('../../assets/img/logotype2.png')} style = {styles.image}
+            />
 
-             <Text style={styles.title}> Récuperer mon mot de passe </Text>
-             <Password />
-      </View>
-    </View>
-
+            <Text style={styles.title}> Récuperer mon mot de passe </Text>
+            <Password />
+          </View>
+        </ScrollView>
+     
     );
   }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import SignUpForm from './SignUpForm';
 
 export default class SignUp extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
             <View style={styles.logoContainer}>
          <Image
               style ={styles.logo}
@@ -17,7 +17,7 @@ export default class SignUp extends React.Component {
       <View style={styles.formContainer}>
       <SignUpForm navigation={this.props.navigation} />
       </View>
-    </View>
+    </ScrollView>
 
     );
   }
