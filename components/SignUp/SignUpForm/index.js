@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
+
 	},
 
 	buttonNext: {
@@ -134,9 +135,9 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 		color: '#F5F5F5',
 		borderRadius: 10,
-		padding: 52,
+		padding: 37,
 		textAlign: 'center',
-		fontSize: 14
+		fontSize: 10
 	},
 
 	buttonPrevious: {
@@ -146,10 +147,10 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		padding: 37,
 		textAlign: 'center',
-		fontSize: 14
+		fontSize: 10
 	},
     button: {
-        width: 140,
+        width: 120,
     }
 
 });
