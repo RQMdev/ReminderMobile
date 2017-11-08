@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View , TextInput, TouchableOpacity, Text } from 'react-native';
+import { SERVER_IP } from './../../../serverConfig';
 
 export default class SignUpForm extends React.Component {
 	constructor(props) {
@@ -15,6 +16,7 @@ export default class SignUpForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onChangeInfos = this.onChangeInfos.bind(this);
 		this.confirmPassword = this.confirmPassword.bind(this);
+		console.log('SERVER_IP', SERVER_IP);
 	}
 
 	handleSubmit() {
@@ -22,7 +24,7 @@ export default class SignUpForm extends React.Component {
 			console.log('Password Matching');
 			console.log(this.state);
 			// Fetch Here
-			fetch('http://10.0.2.52:3001/users/signup', {
+			fetch('http://'+ SERVER_IP +':3001/users/signup', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
@@ -30,7 +32,7 @@ export default class SignUpForm extends React.Component {
 				},
 				body: JSON.stringify(this.state.form)
 			})
-			.then( res => res.json() )
+			.then( res =>	res.json() )
 			.then( data => console.log(data) )
 
 		} else {
