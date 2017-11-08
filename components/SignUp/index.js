@@ -1,23 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
 import SignUpForm from './SignUpForm';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default class SignUp extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <ScrollView>
             <View style={styles.logoContainer}>
-         <Image
-              style ={styles.logo}
-             source = {require('./../../assets/img/logotype2.png')} style = {styles.image}
-             />
-
-             <Text style={styles.title}> Inscription </Text>
-      </View>
-      <View style={styles.formContainer}>
-      <SignUpForm navigation={this.props.navigation} />
-      </View>
-    </View>
+                 <Image style = {styles.logo} source = {require('./../../assets/img/logotype2.png')} style = {styles.image} />
+                 <Text style={styles.title}> Inscription </Text>
+          </View>
+          <View style={styles.formContainer}>
+              <SignUpForm navigation={this.props.navigation} />
+          </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
 
     );
   }
