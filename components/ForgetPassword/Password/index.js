@@ -6,7 +6,7 @@ export default class Motdepasse extends React.Component {
 		return (
 			<View style={styles.container}>
 			<TextInput 
-			placeholder=" e-mail"
+			placeholder=" E-mail"
 			underlineColorAndroid = 'transparent'
 			style={styles.input}
 			 />
@@ -23,13 +23,13 @@ export default class Motdepasse extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 20,
+		padding: 1,
 	},
 
 	input: {
 		width: 300,
 		marginBottom: 160,
-		height: 62,
+		height: 45,
 		backgroundColor: '#F5F5F5',
 		color: "#333333",
 		borderRadius: 10,

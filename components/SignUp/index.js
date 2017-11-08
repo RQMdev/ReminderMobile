@@ -15,7 +15,7 @@ export default class SignUp extends React.Component {
              <Text style={styles.title}> Inscription </Text>
       </View>
       <View style={styles.formContainer}>
-      <SignUpForm />
+      <SignUpForm navigation={this.props.navigation} />
       </View>
     </View>
 

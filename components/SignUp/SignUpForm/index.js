@@ -3,39 +3,40 @@ import { StyleSheet, View , TextInput, TouchableOpacity, Text } from 'react-nati
 
 export default class SignUpForm extends React.Component {
 	render() {
+        const { navigate } = this.props.navigation;
 		return (
 			<View style={styles.container}>
 			<TextInput 
-			placeholder=" username"
+			placeholder=" Username"
 			underlineColorAndroid = 'transparent'
 			style={styles.input}
 			 />
 
 			 <TextInput 
-			 placeholder=" e-mail"
+			 placeholder=" E-mail"
 			 underlineColorAndroid = 'transparent'
 			 style={styles.input}
 			 />
 
 			 <TextInput 
-			 placeholder=" password"
+			 placeholder=" Password"
 			 underlineColorAndroid = 'transparent'
 			 secureTextEntry
 			 style={styles.input}
 			 />
 
 			 <TextInput 
-			 placeholder=" password"
+			 placeholder=" Password"
 			 underlineColorAndroid = 'transparent'
 			 secureTextEntry
 			 style={styles.input}
 			 />
-			 	<View style={styles.coteacote}>
-			 <TouchableOpacity style={styles.buttonContainer}>
+			 	<View style={styles.buttonContainer}>
+			 <TouchableOpacity style={styles.button} onPress = {() => navigate('SignIn')}>
 			<Text style={styles.buttonPrevious}> Previous </Text>
 			 </TouchableOpacity>
 			
-			  <TouchableOpacity style={styles.buttonContainer2}>
+			  <TouchableOpacity style={styles.button}>
 			<Text style={styles.buttonNext}> Next </Text>
 			 </TouchableOpacity>
 			 </View>
@@ -47,21 +48,21 @@ export default class SignUpForm extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 20,
+		padding: 30,
 	},
 
 	input: {
-		height: 62,
+		height: 45,
 		backgroundColor: '#F5F5F5',
 		marginBottom: 30,
 		color: "#333333",
 		borderRadius: 10,
 		fontSize: 16
 	},
-	coteacote: {
+	buttonContainer: {
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'space-around' 
+		justifyContent: 'space-around',
 	},
 
 	buttonNext: {
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		padding: 52,
 		textAlign: 'center',
-		fontSize: 18
+		fontSize: 14
 	},
 
 	buttonPrevious: {
@@ -81,7 +82,10 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		padding: 37,
 		textAlign: 'center',
-		fontSize: 18
-	}
+		fontSize: 14
+	},
+    button: {
+        width: 140,
+    }
 
 });
