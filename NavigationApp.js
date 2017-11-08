@@ -9,17 +9,9 @@ import ForgetPassword from './components/ForgetPassword';
 export const NavigationApp = StackNavigator({
     SignIn: { screen: SignIn },
     Dashboard: { screen: Dashboard },
-<<<<<<< HEAD
-}, 
-
-{ navigationOptions: 
-       { hearder:null,}
-}
-=======
     SignUp: { screen: SignUp },
     ForgetPassword: { screen: ForgetPassword }
 }, { navigationOptions: {
         header: null
     }}
->>>>>>> ce10b950019bb36fb6911b367014e59e50fa11dd
 );
