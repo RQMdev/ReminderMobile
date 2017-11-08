@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Password from './Password.js';
+import Password from './Password';
 
 export default class ForgotPassword extends React.Component {
   render() {
