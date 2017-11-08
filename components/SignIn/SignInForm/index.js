@@ -27,12 +27,12 @@ export default class SignInForm extends Component {
 				  	  </TouchableOpacity>
 				  	  </View>
 				<TouchableOpacity>
-					<Text style={styles.buttonText}>Forget your password ?</Text>
+					<Text style={styles.buttonText} onPress = {() => navigate('ForgetPassword')}>Forget your password ?</Text>
 				</TouchableOpacity>
  			 	</View>
  			 	<View>
 				<TouchableOpacity>
-					<Text style={styles.buttonText2}>Créer un compte</Text>
+					<Text style={styles.buttonText2} onPress = {() => navigate('SignUp')}>Créer un compte</Text>
 				</TouchableOpacity>
 				</View>
 
