@@ -24,6 +24,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
             />
           )
         }}
+  
       />
     ))}
 </List>
