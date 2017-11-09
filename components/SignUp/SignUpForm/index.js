@@ -21,8 +21,6 @@ export default class SignUpForm extends React.Component {
 
 	handleSubmit() {
 		if (this.state.passwordConfirmed){
-			console.log('Password Matching');
-			console.log(this.state);
 			// Fetch Here
 			fetch('http://'+ SERVER_IP +':3001/users/signup', {
 				method: 'POST',
@@ -33,11 +31,9 @@ export default class SignUpForm extends React.Component {
 				body: JSON.stringify(this.state.form)
 			})
 			.then( res =>	res.json() )
-			.then( data => console.log(data) )
+			.then( data => this.props.handleToken(data.token) )
 
 		} else {
-			console.log('Password Not Matching');
-			console.log(this.state);
 			// Handle not matching Password Error.
 		}
 	}
@@ -62,37 +58,30 @@ export default class SignUpForm extends React.Component {
 		return (
 			<View style={styles.container}>
 			<TextInput
-			ref="username"
-			state="username"
 			onChangeText={ value => {this.onChangeInfos(value, 'username')} }
-			placeholder=" Username"
+			placeholder="Username"
 			underlineColorAndroid = 'transparent'
 			style={styles.input}
 			/>
 
 			 <TextInput
-			 ref="email"
-			 state="email"
 			 onChangeText={ value => {this.onChangeInfos(value, 'email')} }
-			 placeholder=" E-mail"
+			 placeholder="E-mail"
 			 underlineColorAndroid = 'transparent'
 			 style={styles.input}
 			 />
 
 			 <TextInput
-			 ref="password"
-			 state="password"
 			 onChangeText={ value => {this.onChangeInfos(value, 'password')} }
-			 placeholder=" Password"
+			 placeholder="Password"
 			 underlineColorAndroid = 'transparent'
 			 secureTextEntry
 			 style={styles.input}
 			 />
 
 			 <TextInput
-			 ref="password2"
 			 onChangeText={ value => {this.confirmPassword(value)} }
-			 placeholder=" Password"
+			 placeholder="Password"
 			 underlineColorAndroid = 'transparent'
 			 secureTextEntry
 			 style={styles.input}
@@ -102,7 +91,7 @@ export default class SignUpForm extends React.Component {
 					 <Text style={styles.buttonPrevious}> Previous </Text>
 				 </TouchableOpacity>
 
-			   <TouchableOpacity style={styles.button} onPress={this.handleSubmit.bind(this)}>
+			   <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
 					 <Text style={styles.buttonNext}> Next </Text>
 			   </TouchableOpacity>
 			  </View>

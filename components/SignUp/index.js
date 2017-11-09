@@ -4,6 +4,17 @@ import SignUpForm from './SignUpForm';
 
 
 export default class SignUp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleToken = this.handleToken.bind(this);
+  }
+
+  handleToken(token) {
+    console.log('SignUp Level token :', token)
+    console.log(this.props.screenProps)
+    this.props.screenProps.handleToken(token);
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -13,7 +24,7 @@ export default class SignUp extends React.Component {
                  <Text style={styles.title}> Inscription </Text>
           </View>
           <View style={styles.formContainer}>
-              <SignUpForm navigation={this.props.navigation} />
+              <SignUpForm navigation={this.props.navigation} toto={'toto_est_content'} handleToken={this.handleToken} />
           </View>
       </ScrollView>
       </KeyboardAvoidingView>

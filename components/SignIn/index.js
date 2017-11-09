@@ -26,7 +26,7 @@ export default class SignIn extends Component {
 		  	  <Text style={styles.title}> Connexion </Text>
 		    </View>
 		  	<View style={styles.formContainer}>
-		  		<SignInForm navigation={this.props.navigation}/>
+		  		<SignInForm navigation={this.props.navigation} />
 	      </View>
 		  </ScrollView>
 

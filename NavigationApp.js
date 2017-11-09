@@ -6,7 +6,6 @@ import Dashboard from './components/Dashboard';
 import SignUp from './components/SignUp';
 import ForgetPassword from './components/ForgetPassword';
 
-
 export const NavigationApp = StackNavigator({
     SignIn: { screen: SignIn },
     Dashboard: { screen: Dashboard },
