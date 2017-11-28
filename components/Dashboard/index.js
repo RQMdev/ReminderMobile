@@ -15,12 +15,10 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskList: [],
-      isMenuTaskVisible: false,
       currentSticky: {},
+      isStickyMenuVisible: false,
       isAddPromptVisible: false,
-      isRenamePromptVisible: false,
-      idGenerator: 0
+      isRenamePromptVisible: false
     };
   }
 
@@ -39,18 +37,18 @@ export default class Dashboard extends React.Component {
     // });
   }
 
-  toggleMenuTaskVisibility = sticky => {
+  toggleStickyMenuVisibility = sticky => {
     let currentSticky = sticky;
-    if (this.state.isMenuTaskVisible) {
+    if (this.state.isStickyMenuVisible) {
       currentSticky = {};
     }
     this.setState({
-      isMenuTaskVisible: !this.state.isMenuTaskVisible,
+      isStickyMenuVisible: !this.state.isStickyMenuVisible,
       currentSticky
     });
   };
 
-  deleteCurrentTask = () => {
+  deleteCurrentSticky = () => {
     this.props.screenProps.handleDeleteSticky(this.state.currentSticky);
     //   const index = lodash.findIndex(this.state.taskList, {
     //     id: this.state.currentTask.id
@@ -58,18 +56,18 @@ export default class Dashboard extends React.Component {
     //   const list = this.state.taskList;
     //   list.splice(index, 1);
     //   this.setState({ taskList: list, currentTask: {} }, () => {
-        this.toggleMenuTaskVisibility();
+        this.toggleStickyMenuVisibility();
     //     this.saveTaskList();
     //   });
   }
 
-  toggleTaskStatus = () => {
+  toggleStickyPriority = () => {
     const updatedSticky = this.state.currentSticky;
     updatedSticky.priority = this.state.currentSticky.priority === 1
       ? 2
       : 1;
       this.props.screenProps.handleEditSticky(updatedSticky);
-      this.setState({isMenuTaskVisible: false});
+      this.toggleStickyMenuVisibility();
     // const index = lodash.findIndex(this.state.taskList, {
     //   id: this.state.currentTask.id
     // });
@@ -91,7 +89,7 @@ export default class Dashboard extends React.Component {
     this.setState({ isAddPromptVisible: false });
   }
 
-  onAddTask = async value => {
+  onAddSticky = async value => {
     const newSticky = {
       title: value,
       content: value,
@@ -100,10 +98,7 @@ export default class Dashboard extends React.Component {
 
     // Pull data to App.js
     await this.props.screenProps.handleAddSticky(newSticky);
-    await this.setState({
-        ...this.state,
-        isAddPromptVisible: false
-      });
+    this.hideAddPrompt();
 
     // this.setState(
     //   {
@@ -121,8 +116,7 @@ export default class Dashboard extends React.Component {
     this.setState({ isAddPromptVisible: true });
   };
 
-  displayRenameTask = sticky => {
-    console.log('STICKY : ', sticky);
+  displayRenameSticky = sticky => {
     this.setState({ currentSticky: sticky, isRenamePromptVisible: true });
   };
 
@@ -130,7 +124,7 @@ export default class Dashboard extends React.Component {
     this.setState({ isRenamePromptVisible: false, currentSticky: {} });
   };
 
-  renameTask = value => {
+  renameSticky = value => {
     const updatedSticky = this.state.currentSticky;
     updatedSticky.title = value;
     updatedSticky.content = value;
@@ -151,12 +145,12 @@ export default class Dashboard extends React.Component {
     AsyncStorage.setItem(storageKey, JSON.stringify(this.state.taskList));
   };
 
-  renderTaskList = () => {
+  renderStickyList = () => {
     if (this.props.screenProps.stickys.length > 0) {
       return (
         <TaskList
-          onPressCallBack={this.toggleMenuTaskVisibility}
-          onLongPressCallBack={this.displayRenameTask}
+          onPressCallBack={this.toggleStickyMenuVisibility}
+          onLongPressCallBack={this.displayRenameSticky}
           taskList={this.props.screenProps.stickys}
         />
       );
@@ -173,18 +167,18 @@ export default class Dashboard extends React.Component {
       <View style={{ flex: 1 }}>
         <Header />
         <ScrollView>
-          {this.renderTaskList()}
+          {this.renderStickyList()}
         </ScrollView>
         <MenuTask
-          isVisible={this.state.isMenuTaskVisible}
-          onDisapearCallBack={this.toggleMenuTaskVisibility}
-          onDeleteCallBack={this.deleteCurrentTask}
-          onChangeStatusCallBack={this.toggleTaskStatus}
+          isVisible={this.state.isStickyMenuVisible}
+          onDisapearCallBack={this.toggleStickyMenuVisibility}
+          onDeleteCallBack={this.deleteCurrentSticky}
+          onChangeStatusCallBack={this.toggleStickyPriority}
         />
         <TextPrompt
           isVisible={this.state.isAddPromptVisible}
           onCancelCallBack={this.hideAddPrompt}
-          onSubmitCallBack={this.onAddTask}
+          onSubmitCallBack={this.onAddSticky}
           title={'Ajouter une nouvelle tâche'}
           placeHolder={'ex : Acheter du lait'}
           defaultValue={''}
@@ -193,7 +187,7 @@ export default class Dashboard extends React.Component {
         <TextPrompt
           isVisible={this.state.isRenamePromptVisible}
           onCancelCallBack={this.hideRenamePrompt}
-          onSubmitCallBack={this.renameTask}
+          onSubmitCallBack={this.renameSticky}
           title={'Renommer la tâche'}
           defaultValue={this.state.currentSticky.content}
         />

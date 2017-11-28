@@ -12,6 +12,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
         title={task.title}
         onPress={() => onPressCallBack(task)}
         onLongPress={() => onLongPressCallBack(task)}
+        hideChevron={true}
         badge={{
           element: (
             <Badge
@@ -28,7 +29,6 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
             />
           )
         }}
-        hideChevron={true}
       />
     ))}
 </List>
