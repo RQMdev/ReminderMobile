@@ -8,16 +8,20 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
   <List containerStyle={style.list}>
     {taskList.map(task => (
       <ListItem
-        key={task.id}
+        key={task._id}
         title={task.content}
         onPress={() => onPressCallBack(task)}
         onLongPress={() => onLongPressCallBack(task)}
         badge={{
           element: (
             <Badge
-              value={task.status}
+              value={
+                task.priority === 1
+                ? TASK.todoStatus
+                : TASK.doneStatus
+              }
               containerStyle={
-                task.status === TASK.todoStatus
+                task.priority === 1
                   ? { backgroundColor: APP_COLORS.accent }
                   : { backgroundColor: APP_COLORS.lightPrimaryColor }
               }

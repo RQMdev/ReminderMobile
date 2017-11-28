@@ -24,17 +24,19 @@ export default class Dashboard extends React.Component {
     };
   }
 
-  componentWillMount() {
-    AsyncStorage.getItem(storageKey).then(storedTaskList => {
-      if (storedTaskList) {
-        this.setState({ taskList: JSON.parse(storedTaskList) }, () => {
-          this.setState({
-            idGenerator: this.state.taskList[this.state.taskList.length - 1]
-              .id + 1
-          });
-        });
-      }
-    });
+  componentDidMount() {
+    this.props.screenProps.handleGetStickys();
+
+    // AsyncStorage.getItem(storageKey).then(storedTaskList => {
+    //   if (storedTaskList) {
+    //     this.setState({ taskList: JSON.parse(storedTaskList) }, () => {
+    //       this.setState({
+    //         idGenerator: this.state.taskList[this.state.taskList.length - 1]
+    //           .id + 1
+    //       });
+    //     });
+    //   }
+    // });
   }
 
   toggleMenuTaskVisibility = task => {
@@ -145,12 +147,12 @@ export default class Dashboard extends React.Component {
   };
 
   renderTaskList = () => {
-    if (this.state.taskList.length > 0) {
+    if (this.props.screenProps.stickys.length > 0) {
       return (
         <TaskList
           onPressCallBack={this.toggleMenuTaskVisibility}
           onLongPressCallBack={this.displayRenameTask}
-          taskList={this.state.taskList}
+          taskList={this.props.screenProps.stickys}
         />
       );
     }
