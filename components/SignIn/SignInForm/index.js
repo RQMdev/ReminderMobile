@@ -13,9 +13,9 @@ export default class SignInForm extends Component {
             }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-		this.onChangeInfos = this.onChangeInfos.bind(this);
+    		this.onChangeInfos = this.onChangeInfos.bind(this);
     }
-    
+
     handleSubmit() {
         if (this.state.form.email === '' || this.state.form.password === '') {
            console.log('ça marche pas');
@@ -29,18 +29,18 @@ export default class SignInForm extends Component {
                 body: JSON.stringify(this.state.form)
             })
             .then( res => res.json() )
-            .then( data => console.log(data) )
+            .then( data => this.props.handleToken(data.token) )
         }
     }
-    
+
     onChangeInfos(value, state) {
         this.setState({form: {
             ...this.state.form,
             [state]: value
         }});
     }
-    
-    
+
+
 		render() {
            const { navigate } = this.props.navigation;
 	       return (

@@ -4,7 +4,7 @@ import { NavigationAction } from 'react-navigation';
 import NavigatorService from './services/Navigator'
 import { NavigationApp } from './NavigationApp';
 
-export default class GithubApp extends Component {
+export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {

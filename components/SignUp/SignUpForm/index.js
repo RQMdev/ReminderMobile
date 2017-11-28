@@ -35,6 +35,7 @@ export default class SignUpForm extends React.Component {
 
 		} else {
 			// Handle not matching Password Error.
+			console.log('this.state.passwordConfirmed is', this.state.passwordConfirmed)
 		}
 	}
 
