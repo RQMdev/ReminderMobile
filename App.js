@@ -14,17 +14,19 @@ export default class App extends Component {
       stickys: []
     }
     this.handleToken = this.handleToken.bind(this);
-    this.handleAddStickys = this.handleAddStickys.bind(this);
+    this.handleAddSticky = this.handleAddSticky.bind(this);
     this.handleGetStickys = this.handleGetStickys.bind(this);
+    this.handleEditSticky = this.handleEditSticky.bind(this);
+    this.handleDeleteSticky = this.handleDeleteSticky.bind(this);
   }
 
   handleToken(token){
-    console.log('TOKEN at App Level', token);
+    console.log('Token at App Level', token);
     this.setState({token});
     NavigatorService.navigate('Dashboard');
   }
 
-  handleAddStickys(sticky){
+  handleAddSticky(sticky){
     // Fetch Here
     fetch('http://'+ SERVER_IP +':3001/stickys/add', {
       method: 'POST',
@@ -45,7 +47,7 @@ export default class App extends Component {
     });
   }
 
-  handleGetStickys(){
+  handleGetStickys () {
     fetch('http://'+ SERVER_IP +':3001/stickys/', {
       method: 'GET',
       headers: {
@@ -64,6 +66,36 @@ export default class App extends Component {
     });
   }
 
+  handleEditSticky (sticky) {
+    fetch('http://'+ SERVER_IP +':3001/stickys/edit', {
+      method: 'POST',
+      headers: {
+        'Authorization': this.state.token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(sticky)
+    })
+    .then( res =>	res.json() )
+    .then( data => console.log(data) )
+    .then( () => { this.handleGetStickys() });
+  }
+
+  handleDeleteSticky (sticky) {
+    fetch('http://'+ SERVER_IP +':3001/stickys/delete', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': this.state.token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(sticky)
+    })
+    .then( res =>	res.json() )
+    .then( data => console.log(data) )
+    .then( () => { this.handleGetStickys() });
+  }
+
   render() {
     return (
       <NavigationApp
@@ -72,8 +104,10 @@ export default class App extends Component {
         }}
         screenProps={{
           handleToken: this.handleToken,
-          handleAddStickys: this.handleAddStickys,
+          handleAddSticky: this.handleAddSticky,
           handleGetStickys: this.handleGetStickys,
+          handleEditSticky: this.handleEditSticky,
+          handleDeleteSticky: this.handleDeleteSticky,
           stickys: this.state.stickys
         }}
       />

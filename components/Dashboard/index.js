@@ -17,7 +17,7 @@ export default class Dashboard extends React.Component {
     this.state = {
       taskList: [],
       isMenuTaskVisible: false,
-      currentTask: {},
+      currentSticky: {},
       isAddPromptVisible: false,
       isRenamePromptVisible: false,
       idGenerator: 0
@@ -39,49 +39,52 @@ export default class Dashboard extends React.Component {
     // });
   }
 
-  toggleMenuTaskVisibility = task => {
-    let currentTask = task;
+  toggleMenuTaskVisibility = sticky => {
+    let currentSticky = sticky;
     if (this.state.isMenuTaskVisible) {
-      currentTask = {};
+      currentSticky = {};
     }
     this.setState({
       isMenuTaskVisible: !this.state.isMenuTaskVisible,
-      currentTask
+      currentSticky
     });
   };
 
   deleteCurrentTask = () => {
-    const index = lodash.findIndex(this.state.taskList, {
-      id: this.state.currentTask.id
-    });
-    const list = this.state.taskList;
-    list.splice(index, 1);
-    this.setState({ taskList: list, currentTask: {} }, () => {
-      this.toggleMenuTaskVisibility();
-      this.saveTaskList();
-    });
+    this.props.screenProps.handleDeleteSticky(this.state.currentSticky);
+    //   const index = lodash.findIndex(this.state.taskList, {
+    //     id: this.state.currentTask.id
+    //   });
+    //   const list = this.state.taskList;
+    //   list.splice(index, 1);
+    //   this.setState({ taskList: list, currentTask: {} }, () => {
+        this.toggleMenuTaskVisibility();
+    //     this.saveTaskList();
+    //   });
   }
 
   toggleTaskStatus = () => {
-    const updatedTask = this.state.currentTask;
-    updatedTask.status = this.state.currentTask.status === TASK.doneStatus
-      ? TASK.todoStatus
-      : TASK.doneStatus;
-    const index = lodash.findIndex(this.state.taskList, {
-      id: this.state.currentTask.id
-    });
-    const updatedTaskList = this.state.taskList;
-    updatedTaskList[index] = updatedTask;
-    this.setState(
-      {
-        taskList: updatedTaskList,
-        isMenuTaskVisible: false,
-        currentTask: {}
-      },
-      () => {
-        this.saveTaskList();
-      }
-    );
+    const updatedSticky = this.state.currentSticky;
+    updatedSticky.priority = this.state.currentSticky.priority === 1
+      ? 2
+      : 1;
+      this.props.screenProps.handleEditSticky(updatedSticky);
+      this.setState({isMenuTaskVisible: false});
+    // const index = lodash.findIndex(this.state.taskList, {
+    //   id: this.state.currentTask.id
+    // });
+    // const updatedTaskList = this.state.taskList;
+    // updatedTaskList[index] = updatedTask;
+    // this.setState(
+    //   {
+    //     taskList: updatedTaskList,
+    //     isMenuTaskVisible: false,
+    //     currentTask: {}
+    //   },
+    //   () => {
+    //     this.saveTaskList();
+    //   }
+    // );
   }
 
   hideAddPrompt = () => {
@@ -96,7 +99,7 @@ export default class Dashboard extends React.Component {
     };
 
     // Pull data to App.js
-    await this.props.screenProps.handleAddStickys(newSticky)
+    await this.props.screenProps.handleAddSticky(newSticky);
     await this.setState({
         ...this.state,
         isAddPromptVisible: false
@@ -118,28 +121,30 @@ export default class Dashboard extends React.Component {
     this.setState({ isAddPromptVisible: true });
   };
 
-  displayRenameTask = task => {
-    this.setState({ currentTask: task, isRenamePromptVisible: true });
+  displayRenameTask = sticky => {
+    console.log('STICKY : ', sticky);
+    this.setState({ currentSticky: sticky, isRenamePromptVisible: true });
   };
 
   hideRenamePrompt = () => {
-    this.setState({ isRenamePromptVisible: false, currentTask: {} });
+    this.setState({ isRenamePromptVisible: false, currentSticky: {} });
   };
 
   renameTask = value => {
-    const updatedTask = this.state.currentTask;
-    updatedTask.content = value;
-
-    const index = lodash.findIndex(this.state.taskList, {
-      id: this.state.currentTask.id
-    });
-    const updatedTaskList = this.state.taskList;
-    updatedTaskList[index] = updatedTask;
-
-    this.setState({ taskList: updatedTaskList }, () => {
-      this.hideRenamePrompt();
-      this.saveTaskList();
-    });
+    const updatedSticky = this.state.currentSticky;
+    updatedSticky.title = value;
+    updatedSticky.content = value;
+    this.props.screenProps.handleEditSticky(updatedSticky);
+    // const index = lodash.findIndex(this.state.taskList, {
+    //   id: this.state.currentTask.id
+    // });
+    // const updatedTaskList = this.state.taskList;
+    // updatedTaskList[index] = updatedTask;
+    //
+    // this.setState({ taskList: updatedTaskList }, () => {
+    this.hideRenamePrompt();
+    //   this.saveTaskList();
+    // });
   };
 
   saveTaskList = () => {
@@ -162,6 +167,7 @@ export default class Dashboard extends React.Component {
       </View>
     );
   };
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -189,7 +195,7 @@ export default class Dashboard extends React.Component {
           onCancelCallBack={this.hideRenamePrompt}
           onSubmitCallBack={this.renameTask}
           title={'Renommer la tâche'}
-          defaultValue={this.state.currentTask.content}
+          defaultValue={this.state.currentSticky.content}
         />
         <ButtonAddTask onPressCallBack={this.displayAddPrompt} />
       </View>

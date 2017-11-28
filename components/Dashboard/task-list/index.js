@@ -9,7 +9,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
     {taskList.map(task => (
       <ListItem
         key={task._id}
-        title={task.content}
+        title={task.title}
         onPress={() => onPressCallBack(task)}
         onLongPress={() => onLongPressCallBack(task)}
         badge={{
