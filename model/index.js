@@ -1,4 +1,4 @@
 export const TASK = {
-  todoStatus: 'Rouge',
-  doneStatus: 'Noir'
+  todoStatus: 'To Do',
+  doneStatus: 'Done'
 };

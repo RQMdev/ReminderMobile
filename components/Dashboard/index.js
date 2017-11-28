@@ -23,6 +23,7 @@ export default class Dashboard extends React.Component {
       idGenerator: 0
     };
   }
+
   componentWillMount() {
     AsyncStorage.getItem(storageKey).then(storedTaskList => {
       if (storedTaskList) {
@@ -57,7 +58,8 @@ export default class Dashboard extends React.Component {
       this.toggleMenuTaskVisibility();
       this.saveTaskList();
     });
-  };
+  }
+
   toggleTaskStatus = () => {
     const updatedTask = this.state.currentTask;
     updatedTask.status = this.state.currentTask.status === TASK.doneStatus
@@ -78,28 +80,37 @@ export default class Dashboard extends React.Component {
         this.saveTaskList();
       }
     );
-  };
+  }
+
   hideAddPrompt = () => {
     this.setState({ isAddPromptVisible: false });
-  };
+  }
 
-  onAddTask = value => {
-    const newTask = {
-      id: this.state.idGenerator,
+  onAddTask = async value => {
+    const newSticky = {
+      title: value,
       content: value,
-      status: TASK.todoStatus
+      priority: 1
     };
-    this.setState(
-      {
-        taskList: [...this.state.taskList, newTask],
-        isAddPromptVisible: false,
-        idGenerator: this.state.idGenerator + 1
-      },
-      () => {
-        this.saveTaskList();
-      }
-    );
-  };
+
+    // Pull data to App.js
+    await this.props.screenProps.handleAddStickys(newSticky)
+    await this.setState({
+        ...this.state,
+        isAddPromptVisible: false
+      });
+
+    // this.setState(
+    //   {
+    //     taskList: [...this.state.taskList, newTask],
+    //     isAddPromptVisible: false,
+    //     idGenerator: this.state.idGenerator + 1
+    //   },
+    //   () => {
+    //     this.saveTaskList();
+    //   }
+    // );
+  }
 
   displayAddPrompt = () => {
     this.setState({ isAddPromptVisible: true });
