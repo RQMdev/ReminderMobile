@@ -29,7 +29,7 @@ export default class PickImage extends React.Component {
 			<View>
 				<Button
 					buttonStyle={style.buttonChangeStatus}
-					title="Choisir une Image"
+					title="Choisir une image"
 					onPress={this._pickImage}
 				/>
 				{/* {image &&

@@ -2,7 +2,9 @@ import { StyleSheet } from 'react-native';
 import { APP_COLORS } from './../../../styles/color';
 
 export const style = StyleSheet.create({
-  buttonChangeStatus: { backgroundColor: APP_COLORS.lightPrimaryColor },
+  buttonChangeStatus: {
+    backgroundColor: APP_COLORS.lightPrimaryColor
+  },
   buttonDelete: { backgroundColor: APP_COLORS.primaryAction },
   modal: {
     backgroundColor: 'white',

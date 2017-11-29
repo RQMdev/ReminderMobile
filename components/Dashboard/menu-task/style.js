@@ -2,8 +2,14 @@ import { StyleSheet } from 'react-native';
 import { APP_COLORS } from './../../../styles/color';
 
 export const style = StyleSheet.create({
-  buttonChangeStatus: { backgroundColor: APP_COLORS.lightPrimaryColor },
-  buttonDelete: { backgroundColor: APP_COLORS.primaryAction },
+  buttonChangeStatus: {
+    backgroundColor: APP_COLORS.lightPrimaryColor,
+    marginBottom: 2
+  },
+  buttonDelete: {
+    backgroundColor: APP_COLORS.primaryAction,
+    marginBottom: 2
+  },
   modal: {
     backgroundColor: 'white',
     height: 200,
@@ -11,7 +17,7 @@ export const style = StyleSheet.create({
     borderRadius: 5
   },
   buttonView: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     flexWrap: 'wrap',
 

@@ -47,7 +47,7 @@ export default class MenuTask extends React.Component {
                 />
                 <Button
                   buttonStyle={style.buttonChangeStatus}
-                  title="Changer statut"
+                  title="Changer de statut"
                   onPress={() => onChangeStatusCallBack()}
                 />
                 <PickImage setImage={this.setImage} />
