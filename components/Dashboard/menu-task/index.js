@@ -3,44 +3,101 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import { style } from './style';
+import PickImage from './../PickImage';
 
-const MenuTask = ({
-  isVisible,
-  onDisapearCallBack,
-  onDeleteCallBack,
-  onChangeStatusCallBack
-}) => (
-  <TouchableWithoutFeedback onPress={() => onDisapearCallBack()}>
-    <Modal
-      isVisible={isVisible}
-      animationIn={'zoomInDown'}
-      animationOut={'zoomOutUp'}
-      animationInTiming={1000}
-      animationOutTiming={1000}
-      backdropTransiitonInTiming={1000}
-      backdropTransiitonOutTiming={1000}
-    >
-      <TouchableWithoutFeedback>
-        <View style={style.modal}>
-          <View style={style.textView}>
-            <Text>Que souhaitez-vous faire sur la tâche ?</Text>
-          </View>
-          <View style={style.buttonView}>
-            <Button
-              buttonStyle={style.buttonDelete}
-              title="Supprimer"
-              onPress={() => onDeleteCallBack(this)}
-            />
-            <Button
-              buttonStyle={style.buttonChangeStatus}
-              title="Changer statut"
-              onPress={() => onChangeStatusCallBack()}
-            />
-          </View>
-        </View>
+export default class MenuTask extends React.Component {
+  constructor (props) {
+    super(props);
+    this.setImage = this.setImage.bind(this);
+  }
+
+  setImage (image) {
+    this.props.setImage(image);
+  }
+
+  render () {
+    const {
+      isVisible,
+      onDisapearCallBack,
+      onDeleteCallBack,
+      onChangeStatusCallBack
+    } = this.props;
+
+    return (
+      <TouchableWithoutFeedback onPress={() => onDisapearCallBack()}>
+        <Modal
+          isVisible={isVisible}
+          animationIn={'zoomInDown'}
+          animationOut={'zoomOutUp'}
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          backdropTransitionInTiming={1000}
+          backdropTransitionOutTiming={1000}
+        >
+          <TouchableWithoutFeedback>
+            <View style={style.modal}>
+              <View style={style.textView}>
+                <Text>Que souhaitez-vous faire sur la tâche ?</Text>
+              </View>
+              <View style={style.buttonView}>
+                <Button
+                  buttonStyle={style.buttonDelete}
+                  title="Supprimer"
+                  onPress={() => onDeleteCallBack(this)}
+                />
+                <Button
+                  buttonStyle={style.buttonChangeStatus}
+                  title="Changer statut"
+                  onPress={() => onChangeStatusCallBack()}
+                />
+                <PickImage setImage={this.setImage} />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
       </TouchableWithoutFeedback>
-    </Modal>
-  </TouchableWithoutFeedback>
-);
+    );
+  }
+}
 
-export default MenuTask;
+// const MenuTask = ({
+//   isVisible,
+//   onDisapearCallBack,
+//   onDeleteCallBack,
+//   onChangeStatusCallBack
+// }) => (
+//   <TouchableWithoutFeedback onPress={() => onDisapearCallBack()}>
+//     <Modal
+//       isVisible={isVisible}
+//       animationIn={'zoomInDown'}
+//       animationOut={'zoomOutUp'}
+//       animationInTiming={1000}
+//       animationOutTiming={1000}
+//       backdropTransitionInTiming={1000}
+//       backdropTransitionOutTiming={1000}
+//     >
+//       <TouchableWithoutFeedback>
+//         <View style={style.modal}>
+//           <View style={style.textView}>
+//             <Text>Que souhaitez-vous faire sur la tâche ?</Text>
+//           </View>
+//           <View style={style.buttonView}>
+//             <Button
+//               buttonStyle={style.buttonDelete}
+//               title="Supprimer"
+//               onPress={() => onDeleteCallBack(this)}
+//             />
+//             <Button
+//               buttonStyle={style.buttonChangeStatus}
+//               title="Changer statut"
+//               onPress={() => onChangeStatusCallBack()}
+//             />
+//             <PickImage />
+//           </View>
+//         </View>
+//       </TouchableWithoutFeedback>
+//     </Modal>
+//   </TouchableWithoutFeedback>
+// );
+//
+// export default MenuTask;

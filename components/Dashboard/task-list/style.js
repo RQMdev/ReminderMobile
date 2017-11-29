@@ -4,6 +4,8 @@ export const style = StyleSheet.create({
   list: {
     marginTop: 0,
     // backgroundColor: '#f5f5f5',
-
+  },
+  title: {
+    color: 'white'
   }
 });

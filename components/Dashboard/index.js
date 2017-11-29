@@ -20,6 +20,7 @@ export default class Dashboard extends React.Component {
       isAddPromptVisible: false,
       isRenamePromptVisible: false
     };
+    this.setImage = this.setImage.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,20 @@ export default class Dashboard extends React.Component {
     //     });
     //   }
     // });
+  }
+
+  setImage = async (image) => {
+    await this.setState({
+      ...this.state,
+      currentSticky: {
+        ...this.state.currentSticky,
+        image
+      }
+    });
+    console.log('currentSticky after adding Image : ', this.state.currentSticky);
+    const updatedSticky = this.state.currentSticky;
+    this.props.screenProps.handleEditSticky(updatedSticky);
+    this.toggleStickyMenuVisibility();
   }
 
   toggleStickyMenuVisibility = sticky => {
@@ -174,6 +189,7 @@ export default class Dashboard extends React.Component {
           onDisapearCallBack={this.toggleStickyMenuVisibility}
           onDeleteCallBack={this.deleteCurrentSticky}
           onChangeStatusCallBack={this.toggleStickyPriority}
+          setImage={this.setImage}
         />
         <TextPrompt
           isVisible={this.state.isAddPromptVisible}
@@ -189,7 +205,9 @@ export default class Dashboard extends React.Component {
           onCancelCallBack={this.hideRenamePrompt}
           onSubmitCallBack={this.renameSticky}
           title={'Renommer la tâche'}
-          defaultValue={this.state.currentSticky.content}
+          defaultValue={
+            this.state.currentSticky !== {} ? this.state.currentSticky.content : ''
+          }
         />
         <ButtonAddTask onPressCallBack={this.displayAddPrompt} />
       </View>

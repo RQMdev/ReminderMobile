@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Image, View } from 'react-native';
+import { Image, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { ImagePicker } from 'expo';
+import { style } from './style';
 
-export default class ImagePickerComponent extends React.Component {
+export default class PickImage extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
@@ -11,11 +13,12 @@ export default class ImagePickerComponent extends React.Component {
 	}
 
 	_pickImage = async () => {
-		let result = await ImagePicker.launchLibraryAsync();
+		let result = await ImagePicker.launchImageLibraryAsync();
 		console.log(result);
 
 		if (!result.cancelled){
-			this.setState({ image: result.uri });
+			await	this.setState({ image: result.uri });
+			this.props.setImage(this.state.image);
 		}
 	}
 
@@ -25,14 +28,15 @@ export default class ImagePickerComponent extends React.Component {
 		return (
 			<View>
 				<Button
-					title="Choose Image"
+					buttonStyle={style.buttonChangeStatus}
+					title="Choisir une Image"
 					onPress={this._pickImage}
 				/>
-				{image &&
+				{/* {image &&
 				<Image
 					source={{ uri: image }}
 					style={{ width: 100, height: 100 }}
-				/>}
+				/>} */}
 			</View>
 		);
 	}
