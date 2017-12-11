@@ -16,10 +16,21 @@ export default class PickImage extends React.Component {
 		let result = await ImagePicker.launchImageLibraryAsync();
 		console.log(result);
 
-		if (!result.cancelled){
-			await	this.setState({ image: result.uri });
-			this.props.setImage(this.state.image);
-		}
+		let localUri = result.uri;
+		let filename = localUri.split('/').pop();
+
+		let match = /\.(\w+)$/.exec(filename);
+		let type = match ? `image/${match[1]}` : `image`;
+
+		let formData = new FormData();
+
+		formData.append('image', { uri: localUri, name: filename, type });
+
+		this.props.handleImageUpload(formData);
+		// if (!result.cancelled){
+		// 	await	this.setState({ image: result.uri });
+		// 	this.props.setImage(this.state.image);
+		// }
 	}
 
 	render () {

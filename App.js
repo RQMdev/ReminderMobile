@@ -18,6 +18,7 @@ export default class App extends Component {
     this.handleGetStickys = this.handleGetStickys.bind(this);
     this.handleEditSticky = this.handleEditSticky.bind(this);
     this.handleDeleteSticky = this.handleDeleteSticky.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   handleToken(token){
@@ -96,6 +97,21 @@ export default class App extends Component {
     .then( () => { this.handleGetStickys() });
   }
 
+  handleImageUpload (formData) {
+    console.log('handleImageUpload Called!');
+    const url = 'http://'+ SERVER_IP +':3001/stickys/image';
+    const options = {
+      method: 'POST',
+      body: formData,
+      header: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+    fetch(url, options)
+      // .then( res => res.json() )
+      .then( data => console.log(data) );
+  }
+
   render() {
     return (
       <NavigationApp
@@ -108,7 +124,8 @@ export default class App extends Component {
           handleGetStickys: this.handleGetStickys,
           handleEditSticky: this.handleEditSticky,
           handleDeleteSticky: this.handleDeleteSticky,
-          stickys: this.state.stickys
+          stickys: this.state.stickys,
+          handleImageUpload: this.handleImageUpload
         }}
       />
     );

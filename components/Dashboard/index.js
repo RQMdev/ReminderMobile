@@ -21,6 +21,7 @@ export default class Dashboard extends React.Component {
       isRenamePromptVisible: false
     };
     this.setImage = this.setImage.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +51,10 @@ export default class Dashboard extends React.Component {
     const updatedSticky = this.state.currentSticky;
     this.props.screenProps.handleEditSticky(updatedSticky);
     this.toggleStickyMenuVisibility();
+  }
+
+  handleImageUpload (formData) {
+    this.props.screenProps.handleImageUpload(formData);
   }
 
   toggleStickyMenuVisibility = sticky => {
@@ -190,6 +195,7 @@ export default class Dashboard extends React.Component {
           onDeleteCallBack={this.deleteCurrentSticky}
           onChangeStatusCallBack={this.toggleStickyPriority}
           setImage={this.setImage}
+          handleImageUpload={this.handleImageUpload}
         />
         <TextPrompt
           isVisible={this.state.isAddPromptVisible}

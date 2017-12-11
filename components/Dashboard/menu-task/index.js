@@ -3,16 +3,21 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import { style } from './style';
-import PickImage from './../PickImage';
+import PickImage from './PickImage';
 
 export default class MenuTask extends React.Component {
   constructor (props) {
     super(props);
     this.setImage = this.setImage.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   setImage (image) {
     this.props.setImage(image);
+  }
+
+  handleImageUpload (formData) {
+    this.props.handleImageUpload(formData);
   }
 
   render () {
@@ -50,7 +55,7 @@ export default class MenuTask extends React.Component {
                   title="Changer de statut"
                   onPress={() => onChangeStatusCallBack()}
                 />
-                <PickImage setImage={this.setImage} />
+                <PickImage setImage={this.setImage} handleImageUpload={this.handleImageUpload} />
               </View>
             </View>
           </TouchableWithoutFeedback>
