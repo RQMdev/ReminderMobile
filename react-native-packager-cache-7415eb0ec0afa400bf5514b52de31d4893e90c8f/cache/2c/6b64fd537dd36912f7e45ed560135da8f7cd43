@@ -1,0 +1,154 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/Dashboard/menu-task/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var _reactNativeElements = require('react-native-elements');
+
+var _reactNativeModal = require('react-native-modal');
+
+var _reactNativeModal2 = babelHelpers.interopRequireDefault(_reactNativeModal);
+
+var _style = require('./style');
+
+var _PickImage = require('./../PickImage');
+
+var _PickImage2 = babelHelpers.interopRequireDefault(_PickImage);
+
+var MenuTask = function (_React$Component) {
+  babelHelpers.inherits(MenuTask, _React$Component);
+
+  function MenuTask(props) {
+    babelHelpers.classCallCheck(this, MenuTask);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (MenuTask.__proto__ || Object.getPrototypeOf(MenuTask)).call(this, props));
+
+    _this.setImage = _this.setImage.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(MenuTask, [{
+    key: 'setImage',
+    value: function setImage(image) {
+      this.props.setImage(image);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          isVisible = _props.isVisible,
+          onDisapearCallBack = _props.onDisapearCallBack,
+          onDeleteCallBack = _props.onDeleteCallBack,
+          onChangeStatusCallBack = _props.onChangeStatusCallBack;
+
+
+      return _react2.default.createElement(
+        _reactNative.TouchableWithoutFeedback,
+        { onPress: function onPress() {
+            return onDisapearCallBack();
+          }, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27
+          }
+        },
+        _react2.default.createElement(
+          _reactNativeModal2.default,
+          {
+            isVisible: isVisible,
+            animationIn: 'zoomInDown',
+            animationOut: 'zoomOutUp',
+            animationInTiming: 1000,
+            animationOutTiming: 1000,
+            backdropTransitionInTiming: 1000,
+            backdropTransitionOutTiming: 1000,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 28
+            }
+          },
+          _react2.default.createElement(
+            _reactNative.TouchableWithoutFeedback,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 37
+              }
+            },
+            _react2.default.createElement(
+              _reactNative.View,
+              { style: _style.style.modal, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 38
+                }
+              },
+              _react2.default.createElement(
+                _reactNative.View,
+                { style: _style.style.textView, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 39
+                  }
+                },
+                _react2.default.createElement(
+                  _reactNative.Text,
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 40
+                    }
+                  },
+                  'Que souhaitez-vous faire sur la t\xE2che ?'
+                )
+              ),
+              _react2.default.createElement(
+                _reactNative.View,
+                { style: _style.style.buttonView, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 42
+                  }
+                },
+                _react2.default.createElement(_reactNativeElements.Button, {
+                  buttonStyle: _style.style.buttonDelete,
+                  title: 'Supprimer',
+                  onPress: function onPress() {
+                    return onDeleteCallBack(_this2);
+                  },
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 43
+                  }
+                }),
+                _react2.default.createElement(_reactNativeElements.Button, {
+                  buttonStyle: _style.style.buttonChangeStatus,
+                  title: 'Changer de statut',
+                  onPress: function onPress() {
+                    return onChangeStatusCallBack();
+                  },
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 48
+                  }
+                }),
+                _react2.default.createElement(_PickImage2.default, { setImage: this.setImage, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 53
+                  }
+                })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return MenuTask;
+}(_react2.default.Component);
+
+exports.default = MenuTask;

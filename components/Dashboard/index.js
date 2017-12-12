@@ -54,7 +54,7 @@ export default class Dashboard extends React.Component {
   }
 
   handleImageUpload (formData) {
-    this.props.screenProps.handleImageUpload(formData);
+    this.props.screenProps.handleImageUpload(formData, this.state.currentSticky);
   }
 
   toggleStickyMenuVisibility = sticky => {

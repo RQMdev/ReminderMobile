@@ -1,0 +1,118 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/SignUp/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var _SignUpForm = require('./SignUpForm');
+
+var _SignUpForm2 = babelHelpers.interopRequireDefault(_SignUpForm);
+
+var SignUp = function (_React$Component) {
+  babelHelpers.inherits(SignUp, _React$Component);
+
+  function SignUp(props) {
+    babelHelpers.classCallCheck(this, SignUp);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).call(this, props));
+
+    _this.handleToken = _this.handleToken.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(SignUp, [{
+    key: 'handleToken',
+    value: function handleToken(token) {
+      console.log('SignUp Level token :', token);
+      console.log(this.props.screenProps);
+      this.props.screenProps.handleToken(token);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactNative.KeyboardAvoidingView,
+        { style: styles.container, behavior: 'padding', __source: {
+            fileName: _jsxFileName,
+            lineNumber: 20
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.ScrollView,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 21
+            }
+          },
+          _react2.default.createElement(
+            _reactNative.View,
+            { style: styles.logoContainer, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 22
+              }
+            },
+            _react2.default.createElement(_reactNative.Image, { style: styles.logo, source: require('./../../assets/img/logotype2.png'), style: styles.image, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              }
+            }),
+            _react2.default.createElement(
+              _reactNative.Text,
+              { style: styles.title, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                }
+              },
+              ' Inscription '
+            )
+          ),
+          _react2.default.createElement(
+            _reactNative.View,
+            { style: styles.formContainer, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 26
+              }
+            },
+            _react2.default.createElement(_SignUpForm2.default, { navigation: this.props.navigation, toto: 'toto_est_content', handleToken: this.handleToken, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 27
+              }
+            })
+          )
+        )
+      );
+    }
+  }]);
+  return SignUp;
+}(_react2.default.Component);
+
+exports.default = SignUp;
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#333333'
+  },
+
+  logoContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    paddingTop: 80
+  },
+
+  title: {
+    color: '#F5F5F5',
+    marginTop: 20,
+    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: 'sans-serif'
+
+  }
+});

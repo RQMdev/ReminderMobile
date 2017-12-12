@@ -1,0 +1,276 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/Dashboard/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _lodash = require('lodash');
+
+var _lodash2 = babelHelpers.interopRequireDefault(_lodash);
+
+var _reactNative = require('react-native');
+
+var _buttonAddTask = require('./button-add-task');
+
+var _buttonAddTask2 = babelHelpers.interopRequireDefault(_buttonAddTask);
+
+var _Header = require('./Header');
+
+var _Header2 = babelHelpers.interopRequireDefault(_Header);
+
+var _taskList = require('./task-list');
+
+var _taskList2 = babelHelpers.interopRequireDefault(_taskList);
+
+var _menuTask = require('./menu-task');
+
+var _menuTask2 = babelHelpers.interopRequireDefault(_menuTask);
+
+var _model = require('./../../model');
+
+var _textPrompt = require('./text-prompt');
+
+var _textPrompt2 = babelHelpers.interopRequireDefault(_textPrompt);
+
+var _style = require('./../../style.js');
+
+var storageKey = 'taskList';
+
+var Dashboard = function (_React$Component) {
+  babelHelpers.inherits(Dashboard, _React$Component);
+
+  function Dashboard(props) {
+    var _this2 = this;
+
+    babelHelpers.classCallCheck(this, Dashboard);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
+
+    _this.setImage = function _callee(image) {
+      var updatedSticky;
+      return regeneratorRuntime.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(_this.setState(babelHelpers.extends({}, _this.state, {
+                currentSticky: babelHelpers.extends({}, _this.state.currentSticky, {
+                  image: image
+                })
+              })));
+
+            case 2:
+              console.log('currentSticky after adding Image : ', _this.state.currentSticky);
+              updatedSticky = _this.state.currentSticky;
+
+              _this.props.screenProps.handleEditSticky(updatedSticky);
+              _this.toggleStickyMenuVisibility();
+
+            case 6:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, null, _this2);
+    };
+
+    _this.toggleStickyMenuVisibility = function (sticky) {
+      var currentSticky = sticky;
+      if (_this.state.isStickyMenuVisible) {
+        currentSticky = {};
+      }
+      _this.setState({
+        isStickyMenuVisible: !_this.state.isStickyMenuVisible,
+        currentSticky: currentSticky
+      });
+    };
+
+    _this.deleteCurrentSticky = function () {
+      _this.props.screenProps.handleDeleteSticky(_this.state.currentSticky);
+
+      _this.toggleStickyMenuVisibility();
+    };
+
+    _this.toggleStickyPriority = function () {
+      var updatedSticky = _this.state.currentSticky;
+      updatedSticky.priority = _this.state.currentSticky.priority === 1 ? 2 : 1;
+      _this.props.screenProps.handleEditSticky(updatedSticky);
+      _this.toggleStickyMenuVisibility();
+    };
+
+    _this.hideAddPrompt = function () {
+      _this.setState({ isAddPromptVisible: false });
+    };
+
+    _this.onAddSticky = function _callee2(value) {
+      var newSticky;
+      return regeneratorRuntime.async(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              newSticky = {
+                title: value,
+                content: value,
+                priority: 1
+              };
+              _context2.next = 3;
+              return regeneratorRuntime.awrap(_this.props.screenProps.handleAddSticky(newSticky));
+
+            case 3:
+              _this.hideAddPrompt();
+
+            case 4:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, null, _this2);
+    };
+
+    _this.displayAddPrompt = function () {
+      _this.setState({ isAddPromptVisible: true });
+    };
+
+    _this.displayRenameSticky = function (sticky) {
+      _this.setState({ currentSticky: sticky, isRenamePromptVisible: true });
+    };
+
+    _this.hideRenamePrompt = function () {
+      _this.setState({ isRenamePromptVisible: false, currentSticky: {} });
+    };
+
+    _this.renameSticky = function (value) {
+      var updatedSticky = _this.state.currentSticky;
+      updatedSticky.title = value;
+      updatedSticky.content = value;
+      _this.props.screenProps.handleEditSticky(updatedSticky);
+
+      _this.hideRenamePrompt();
+    };
+
+    _this.saveTaskList = function () {
+      _reactNative.AsyncStorage.setItem(storageKey, JSON.stringify(_this.state.taskList));
+    };
+
+    _this.renderStickyList = function () {
+      if (_this.props.screenProps.stickys.length > 0) {
+        return _react2.default.createElement(_taskList2.default, {
+          onPressCallBack: _this.toggleStickyMenuVisibility,
+          onLongPressCallBack: _this.displayRenameSticky,
+          taskList: _this.props.screenProps.stickys,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 166
+          }
+        });
+      }
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: _style.style.noTask, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 174
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.Text,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 175
+            }
+          },
+          'Cliquer sur le bouton ajouter pour cr\xE9er une t\xE2che'
+        )
+      );
+    };
+
+    _this.state = {
+      currentSticky: {},
+      isStickyMenuVisible: false,
+      isAddPromptVisible: false,
+      isRenamePromptVisible: false
+    };
+    _this.setImage = _this.setImage.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(Dashboard, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.screenProps.handleGetStickys();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: { flex: 1 }, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 182
+          }
+        },
+        _react2.default.createElement(_Header2.default, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 183
+          }
+        }),
+        _react2.default.createElement(
+          _reactNative.ScrollView,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 184
+            }
+          },
+          this.renderStickyList()
+        ),
+        _react2.default.createElement(_menuTask2.default, {
+          isVisible: this.state.isStickyMenuVisible,
+          onDisapearCallBack: this.toggleStickyMenuVisibility,
+          onDeleteCallBack: this.deleteCurrentSticky,
+          onChangeStatusCallBack: this.toggleStickyPriority,
+          setImage: this.setImage,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 187
+          }
+        }),
+        _react2.default.createElement(_textPrompt2.default, {
+          isVisible: this.state.isAddPromptVisible,
+          onCancelCallBack: this.hideAddPrompt,
+          onSubmitCallBack: this.onAddSticky,
+          title: 'Ajouter une nouvelle tâche',
+          placeHolder: 'ex : Acheter du lait',
+          defaultValue: '',
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 194
+          }
+        }),
+        _react2.default.createElement(_textPrompt2.default, {
+          isVisible: this.state.isRenamePromptVisible,
+          onCancelCallBack: this.hideRenamePrompt,
+          onSubmitCallBack: this.renameSticky,
+          title: 'Renommer la tâche',
+          defaultValue: this.state.currentSticky !== {} ? this.state.currentSticky.content : '',
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 203
+          }
+        }),
+        _react2.default.createElement(_buttonAddTask2.default, { onPressCallBack: this.displayAddPrompt, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 212
+          }
+        })
+      );
+    }
+  }]);
+  return Dashboard;
+}(_react2.default.Component);
+
+exports.default = Dashboard;

@@ -19,7 +19,9 @@ export default class SignUpForm extends React.Component {
 		console.log('SERVER_IP', SERVER_IP);
 	}
 
+				// console.log('je suis ici');
 	handleSubmit() {
+		console.log('je suis ici');
 		if (this.state.passwordConfirmed){
 			// Fetch Here
 			fetch('http://'+ SERVER_IP +':3001/users/signup', {
@@ -32,6 +34,7 @@ export default class SignUpForm extends React.Component {
 			})
 			.then( res =>	res.json() )
 			.then( data => this.props.handleToken(data.token) )
+			.catch( err => console.log(err) )
 
 		} else {
 			// Handle not matching Password Error.

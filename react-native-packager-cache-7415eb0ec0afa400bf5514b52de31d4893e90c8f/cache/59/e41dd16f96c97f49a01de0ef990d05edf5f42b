@@ -1,0 +1,7 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TASK = exports.TASK = {
+  todoStatus: 'To Do',
+  doneStatus: 'Done'
+};

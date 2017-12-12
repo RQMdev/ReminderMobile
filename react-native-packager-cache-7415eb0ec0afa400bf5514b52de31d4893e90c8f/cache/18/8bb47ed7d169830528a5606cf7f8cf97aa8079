@@ -1,0 +1,57 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactNavigation = require('react-navigation');
+
+var _container = void 0;
+
+function setContainer(container) {
+  _container = container;
+}
+
+function reset(routeName, params) {
+  _container.dispatch(_reactNavigation.NavigationActions.reset({
+    index: 0,
+    actions: [_reactNavigation.NavigationActions.navigate({
+      type: 'Navigation/NAVIGATE',
+      routeName: routeName,
+      params: params
+    })]
+  }));
+}
+
+function navigate(routeName, params) {
+  _container.dispatch(_reactNavigation.NavigationActions.navigate({
+    type: 'Navigation/NAVIGATE',
+    routeName: routeName,
+    params: params
+  }));
+}
+
+function navigateDeep(actions) {
+  _container.dispatch(actions.reduceRight(function (prevAction, action) {
+    return _reactNavigation.NavigationActions.navigate({
+      type: 'Navigation/NAVIGATE',
+      routeName: action.routeName,
+      params: action.params,
+      action: prevAction
+    });
+  }, undefined));
+}
+
+function getCurrentRoute() {
+  if (!_container || !_container.state.nav) {
+    return null;
+  }
+
+  return _container.state.nav.routes[_container.state.nav.index] || null;
+}
+
+exports.default = {
+  setContainer: setContainer,
+  navigateDeep: navigateDeep,
+  navigate: navigate,
+  reset: reset,
+  getCurrentRoute: getCurrentRoute
+};

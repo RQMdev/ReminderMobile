@@ -1,0 +1,96 @@
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/ForgetPassword/Password/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var Motdepasse = function (_React$Component) {
+	babelHelpers.inherits(Motdepasse, _React$Component);
+
+	function Motdepasse() {
+		babelHelpers.classCallCheck(this, Motdepasse);
+		return babelHelpers.possibleConstructorReturn(this, (Motdepasse.__proto__ || Object.getPrototypeOf(Motdepasse)).apply(this, arguments));
+	}
+
+	babelHelpers.createClass(Motdepasse, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				_reactNative.View,
+				{ style: styles.container, __source: {
+						fileName: _jsxFileName,
+						lineNumber: 7
+					}
+				},
+				_react2.default.createElement(_reactNative.TextInput, {
+					placeholder: ' E-mail',
+					underlineColorAndroid: 'transparent',
+					style: styles.input,
+					__source: {
+						fileName: _jsxFileName,
+						lineNumber: 8
+					}
+				}),
+				_react2.default.createElement(
+					_reactNative.TouchableOpacity,
+					{ style: styles.buttonContainer, __source: {
+							fileName: _jsxFileName,
+							lineNumber: 14
+						}
+					},
+					_react2.default.createElement(
+						_reactNative.Text,
+						{ style: styles.buttonMDP, __source: {
+								fileName: _jsxFileName,
+								lineNumber: 15
+							}
+						},
+						' R\xE9cuperer mon mot de passe '
+					)
+				)
+			);
+		}
+	}]);
+	return Motdepasse;
+}(_react2.default.Component);
+
+exports.default = Motdepasse;
+
+
+var styles = _reactNative.StyleSheet.create({
+	container: {
+		padding: 1
+	},
+
+	input: {
+		width: 250,
+		marginBottom: 80,
+		height: 45,
+		backgroundColor: '#F5F5F5',
+		color: "#333333",
+		borderRadius: 10,
+		fontSize: 18,
+		textAlign: 'center'
+	},
+	buttonContainer: {
+		borderRadius: 20,
+		backgroundColor: '#f55c54',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-around'
+	},
+
+	buttonMDP: {
+		paddingVertical: 15,
+		color: '#F5F5F5',
+		borderRadius: 10,
+		textAlign: 'center',
+		fontSize: 14
+	}
+
+});

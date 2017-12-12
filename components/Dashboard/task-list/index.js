@@ -4,6 +4,7 @@ import { List, ListItem, Badge } from 'react-native-elements';
 import { TASK } from './../../../model';
 import { APP_COLORS } from './../../../styles/color';
 import { style } from './style';
+import { SERVER_IP} from './../../../ServerConfig';
 
 const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
   <List containerStyle={style.list}>
@@ -20,7 +21,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
             height: '100%',
             justifyContent: 'center',
           }}
-          source={{ uri: task.image }}
+          source={{ uri:'http://'+ SERVER_IP+':3001/'+task.image }}
         />
         <ListItem
           key={task._id}

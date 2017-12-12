@@ -1,0 +1,9 @@
+var _expo = require('expo');
+
+var _expo2 = babelHelpers.interopRequireDefault(_expo);
+
+var _App = require('../../App');
+
+var _App2 = babelHelpers.interopRequireDefault(_App);
+
+_expo2.default.registerRootComponent(_App2.default);

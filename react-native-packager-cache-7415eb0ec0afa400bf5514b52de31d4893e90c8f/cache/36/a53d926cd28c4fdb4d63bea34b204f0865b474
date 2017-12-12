@@ -1,0 +1,4 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SERVER_IP = exports.SERVER_IP = '10.0.2.65';

@@ -1,0 +1,233 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = "/home/apprenant16/Bureau/Reminder/ReminderMobile/node_modules/react-native-action-button/ActionButtonItem.js";
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _propTypes = require("prop-types");
+
+var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
+var _reactNative = require("react-native");
+
+var _shared = require("./shared");
+
+var _Dimensions$get = _reactNative.Dimensions.get("window"),
+    WIDTH = _Dimensions$get.width;
+
+var SHADOW_SPACE = 10;
+var TEXT_HEIGHT = 22;
+
+var TextTouchable = _shared.isAndroid ? _reactNative.TouchableNativeFeedback : _reactNative.TouchableWithoutFeedback;
+
+var ActionButtonItem = function (_Component) {
+  babelHelpers.inherits(ActionButtonItem, _Component);
+
+  function ActionButtonItem() {
+    babelHelpers.classCallCheck(this, ActionButtonItem);
+    return babelHelpers.possibleConstructorReturn(this, (ActionButtonItem.__proto__ || Object.getPrototypeOf(ActionButtonItem)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(ActionButtonItem, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          size = _props.size,
+          position = _props.position,
+          verticalOrientation = _props.verticalOrientation,
+          hideShadow = _props.hideShadow,
+          spacing = _props.spacing;
+
+
+      if (!this.props.active) return null;
+
+      var animatedViewStyle = {
+        marginBottom: -SHADOW_SPACE,
+        alignItems: _shared.alignItemsMap[position],
+
+        opacity: this.props.anim,
+        transform: [{
+          translateY: this.props.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [verticalOrientation === "down" ? -40 : 40, 0]
+          })
+        }]
+      };
+
+      var buttonStyle = {
+        justifyContent: "center",
+        alignItems: "center",
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        backgroundColor: this.props.buttonColor || this.props.btnColor
+      };
+
+      if (position !== "center") buttonStyle[position] = (this.props.parentSize - size) / 2;
+
+      var Touchable = (0, _shared.getTouchableComponent)(this.props.useNativeFeedback);
+
+      var parentStyle = _shared.isAndroid && this.props.fixNativeFeedbackRadius ? {
+        height: size,
+        marginBottom: spacing,
+        right: this.props.offsetX,
+        borderRadius: this.props.size / 2
+      } : {
+        paddingHorizontal: this.props.offsetX,
+        height: size + SHADOW_SPACE + spacing
+      };
+      return _react2.default.createElement(
+        _reactNative.Animated.View,
+        {
+          pointerEvents: "box-none",
+          style: [animatedViewStyle, parentStyle],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 105
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.View,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 109
+            }
+          },
+          _react2.default.createElement(
+            Touchable,
+            {
+              testID: this.props.testID,
+              background: (0, _shared.touchableBackground)(this.props.nativeFeedbackRippleColor, this.props.fixNativeFeedbackRadius),
+              activeOpacity: this.props.activeOpacity || _shared.DEFAULT_ACTIVE_OPACITY,
+              onPress: this.props.onPress,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 110
+              }
+            },
+            _react2.default.createElement(
+              _reactNative.View,
+              { style: [buttonStyle, !hideShadow ? babelHelpers.extends({}, _shared.shadowStyle, this.props.shadowStyle) : null], __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 119
+                }
+              },
+              this.props.children
+            )
+          )
+        ),
+        this._renderTitle()
+      );
+    }
+  }, {
+    key: "_renderTitle",
+    value: function _renderTitle() {
+      if (!this.props.title) return null;
+
+      var _props2 = this.props,
+          textContainerStyle = _props2.textContainerStyle,
+          hideLabelShadow = _props2.hideLabelShadow,
+          offsetX = _props2.offsetX,
+          parentSize = _props2.parentSize,
+          size = _props2.size,
+          position = _props2.position,
+          spaceBetween = _props2.spaceBetween;
+
+      var offsetTop = Math.max(size / 2 - TEXT_HEIGHT / 2, 0);
+      var positionStyles = { top: offsetTop };
+      var hideShadow = hideLabelShadow === undefined ? this.props.hideShadow : hideLabelShadow;
+
+      if (position !== "center") {
+        positionStyles[position] = offsetX + (parentSize - size) / 2 + size + spaceBetween;
+      } else {
+        positionStyles.right = WIDTH / 2 + size / 2 + spaceBetween;
+      }
+
+      var textStyles = [styles.textContainer, positionStyles, !hideShadow && _shared.shadowStyle, textContainerStyle];
+
+      var title = _react2.default.isValidElement(this.props.title) ? this.props.title : _react2.default.createElement(
+        _reactNative.Text,
+        {
+          allowFontScaling: false,
+          style: [styles.text, this.props.textStyle],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 168
+          }
+        },
+        this.props.title
+      );
+
+      return _react2.default.createElement(
+        TextTouchable,
+        {
+          background: (0, _shared.touchableBackground)(this.props.nativeFeedbackRippleColor, this.props.fixNativeFeedbackRadius),
+          activeOpacity: this.props.activeOpacity || _shared.DEFAULT_ACTIVE_OPACITY,
+          onPress: this.props.onPress,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 178
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.View,
+          { style: textStyles, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 186
+            }
+          },
+          title
+        )
+      );
+    }
+  }], [{
+    key: "defaultProps",
+    get: function get() {
+      return {
+        active: true,
+        spaceBetween: 15,
+        useNativeFeedback: true,
+        activeOpacity: _shared.DEFAULT_ACTIVE_OPACITY,
+        fixNativeFeedbackRadius: false,
+        nativeFeedbackRippleColor: "rgba(255,255,255,0.75)"
+      };
+    }
+  }, {
+    key: "propTypes",
+    get: function get() {
+      return {
+        active: _propTypes2.default.bool,
+        useNativeFeedback: _propTypes2.default.bool,
+        fixNativeFeedbackRadius: _propTypes2.default.bool,
+        nativeFeedbackRippleColor: _propTypes2.default.string,
+        activeOpacity: _propTypes2.default.number
+      };
+    }
+  }]);
+  return ActionButtonItem;
+}(_react.Component);
+
+exports.default = ActionButtonItem;
+
+
+var styles = _reactNative.StyleSheet.create({
+  textContainer: {
+    position: "absolute",
+    paddingVertical: _shared.isAndroid ? 2 : 3,
+    paddingHorizontal: 8,
+    borderRadius: 3,
+    borderWidth: _reactNative.StyleSheet.hairlineWidth,
+    borderColor: "#eee",
+    backgroundColor: "white",
+    height: TEXT_HEIGHT
+  },
+  text: {
+    flex: 1,
+    fontSize: 12,
+    color: "#444"
+  }
+});

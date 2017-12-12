@@ -1,0 +1,96 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/ForgetPassword/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var _Password = require('./Password');
+
+var _Password2 = babelHelpers.interopRequireDefault(_Password);
+
+var ForgotPassword = function (_React$Component) {
+  babelHelpers.inherits(ForgotPassword, _React$Component);
+
+  function ForgotPassword() {
+    babelHelpers.classCallCheck(this, ForgotPassword);
+    return babelHelpers.possibleConstructorReturn(this, (ForgotPassword.__proto__ || Object.getPrototypeOf(ForgotPassword)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(ForgotPassword, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactNative.ScrollView,
+        { style: styles.container, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 9
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.View,
+          { style: styles.logoContainer, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 10
+            }
+          },
+          _react2.default.createElement(_reactNative.Image, {
+            style: styles.logo,
+            source: require('../../assets/img/logotype2.png'), style: styles.image,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 11
+            }
+          }),
+          _react2.default.createElement(
+            _reactNative.Text,
+            { style: styles.title, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 16
+              }
+            },
+            ' R\xE9cuperer mon mot de passe '
+          ),
+          _react2.default.createElement(_Password2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 17
+            }
+          })
+        )
+      );
+    }
+  }]);
+  return ForgotPassword;
+}(_react2.default.Component);
+
+exports.default = ForgotPassword;
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#333333'
+  },
+
+  logoContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    paddingTop: 100,
+    marginBottom: 40
+  },
+
+  title: {
+    color: '#F5F5F5',
+    marginTop: 50,
+    textAlign: 'center',
+    fontSize: 15,
+    fontFamily: 'sans-serif',
+    paddingBottom: 40
+
+  }
+});

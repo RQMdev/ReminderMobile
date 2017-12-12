@@ -1,0 +1,13 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.style = undefined;
+
+var _reactNative = require('react-native');
+
+var style = exports.style = _reactNative.StyleSheet.create({
+  noTask: {
+    marginTop: 30,
+    alignItems: 'center'
+  }
+});

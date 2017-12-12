@@ -1,0 +1,39 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/home/apprenant16/Bureau/Reminder/ReminderMobile/components/Dashboard/text-prompt/index.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNativePrompt = require('react-native-prompt');
+
+var _reactNativePrompt2 = babelHelpers.interopRequireDefault(_reactNativePrompt);
+
+var TextPrompt = function TextPrompt(_ref) {
+  var isVisible = _ref.isVisible,
+      onCancelCallBack = _ref.onCancelCallBack,
+      onSubmitCallBack = _ref.onSubmitCallBack,
+      title = _ref.title,
+      placeHolder = _ref.placeHolder,
+      defaultValue = _ref.defaultValue;
+  return _react2.default.createElement(_reactNativePrompt2.default, {
+    title: title,
+    placeholder: placeHolder,
+    defaultValue: defaultValue,
+    visible: isVisible,
+    onCancel: function onCancel() {
+      return onCancelCallBack();
+    },
+    onSubmit: function onSubmit(value) {
+      return onSubmitCallBack(value);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    }
+  });
+};
+
+exports.default = TextPrompt;

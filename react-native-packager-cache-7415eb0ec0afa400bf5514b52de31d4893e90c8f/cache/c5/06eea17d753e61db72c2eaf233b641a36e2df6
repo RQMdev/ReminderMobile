@@ -1,0 +1,452 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = "/home/apprenant16/Bureau/Reminder/ReminderMobile/node_modules/react-native-action-button/ActionButton.js";
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _propTypes = require("prop-types");
+
+var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
+var _reactNative = require("react-native");
+
+var _ActionButtonItem = require("./ActionButtonItem");
+
+var _ActionButtonItem2 = babelHelpers.interopRequireDefault(_ActionButtonItem);
+
+var _shared = require("./shared");
+
+var ActionButton = function (_Component) {
+  babelHelpers.inherits(ActionButton, _Component);
+
+  function ActionButton(props) {
+    babelHelpers.classCallCheck(this, ActionButton);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (ActionButton.__proto__ || Object.getPrototypeOf(ActionButton)).call(this, props));
+
+    _this.state = {
+      resetToken: props.resetToken,
+      active: props.active
+    };
+
+    _this.anim = new _reactNative.Animated.Value(props.active ? 1 : 0);
+    _this.timeout = null;
+    return _this;
+  }
+
+  babelHelpers.createClass(ActionButton, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.timeout);
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _this2 = this;
+
+      if (nextProps.resetToken !== this.state.resetToken) {
+        if (nextProps.active === false && this.state.active === true) {
+          if (this.props.onReset) this.props.onReset();
+          _reactNative.Animated.spring(this.anim, { toValue: 0 }).start();
+          setTimeout(function () {
+            return _this2.setState({ active: false, resetToken: nextProps.resetToken });
+          }, 250);
+          return;
+        }
+
+        if (nextProps.active === true && this.state.active === false) {
+          _reactNative.Animated.spring(this.anim, { toValue: 1 }).start();
+          this.setState({ active: true, resetToken: nextProps.resetToken });
+          return;
+        }
+
+        this.setState({
+          resetToken: nextProps.resetToken,
+          active: nextProps.active
+        });
+      }
+    }
+  }, {
+    key: "getOrientation",
+    value: function getOrientation() {
+      return { alignItems: _shared.alignItemsMap[this.props.position] };
+    }
+  }, {
+    key: "getOffsetXY",
+    value: function getOffsetXY() {
+      return {
+        paddingVertical: this.props.offsetY
+      };
+    }
+  }, {
+    key: "getOverlayStyles",
+    value: function getOverlayStyles() {
+      return [styles.overlay, {
+        elevation: this.props.elevation,
+        zIndex: this.props.zIndex,
+        justifyContent: this.props.verticalOrientation === "up" ? "flex-end" : "flex-start"
+      }];
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        _reactNative.View,
+        {
+          pointerEvents: "box-none",
+          style: [this.getOverlayStyles(), this.props.style],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 97
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.Animated.View,
+          {
+            pointerEvents: "none",
+            style: [this.getOverlayStyles(), {
+              backgroundColor: this.props.bgColor,
+              opacity: this.anim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, this.props.bgOpacity]
+              })
+            }],
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 101
+            }
+          },
+          this.props.backdrop
+        ),
+        _react2.default.createElement(
+          _reactNative.View,
+          {
+            pointerEvents: "box-none",
+            style: [this.getOverlayStyles(), this.getOrientation(), this.getOffsetXY()],
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 116
+            }
+          },
+          this.state.active && !this.props.backgroundTappable && this._renderTappableBackground(),
+          this.props.verticalOrientation === "up" && this.props.children && this._renderActions(),
+          this._renderMainButton(),
+          this.props.verticalOrientation === "down" && this.props.children && this._renderActions()
+        )
+      );
+    }
+  }, {
+    key: "_renderMainButton",
+    value: function _renderMainButton() {
+      var _this3 = this;
+
+      var animatedViewStyle = {
+        transform: [{
+          scale: this.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, this.props.outRangeScale]
+          })
+        }, {
+          rotate: this.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: ["0deg", this.props.degrees + "deg"]
+          })
+        }]
+      };
+
+      var wrapperStyle = {
+        backgroundColor: this.anim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [this.props.buttonColor, this.props.btnOutRange || this.props.buttonColor]
+        }),
+        width: this.props.size,
+        height: this.props.size,
+        borderRadius: this.props.size / 2
+      };
+
+      var buttonStyle = {
+        width: this.props.size,
+        height: this.props.size,
+        borderRadius: this.props.size / 2,
+        alignItems: "center",
+        justifyContent: "center"
+      };
+
+      var Touchable = (0, _shared.getTouchableComponent)(this.props.useNativeFeedback);
+      var parentStyle = _shared.isAndroid && this.props.fixNativeFeedbackRadius ? {
+        right: this.props.offsetX,
+        zIndex: this.props.zIndex,
+        borderRadius: this.props.size / 2,
+        width: this.props.size
+      } : { marginHorizontal: this.props.offsetX, zIndex: this.props.zIndex };
+
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: [parentStyle, !this.props.hideShadow && _shared.shadowStyle, !this.props.hideShadow && this.props.shadowStyle],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 191
+          }
+        },
+        _react2.default.createElement(
+          Touchable,
+          {
+            testID: this.props.testID,
+            background: (0, _shared.touchableBackground)(this.props.nativeFeedbackRippleColor, this.props.fixNativeFeedbackRadius),
+            activeOpacity: this.props.activeOpacity,
+            onLongPress: this.props.onLongPress,
+            onPress: function onPress() {
+              _this3.props.onPress();
+              if (_this3.props.children) _this3.animateButton();
+            },
+            onPressIn: this.props.onPressIn,
+            onPressOut: this.props.onPressOut,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 197
+            }
+          },
+          _react2.default.createElement(
+            _reactNative.Animated.View,
+            {
+              style: wrapperStyle,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 212
+              }
+            },
+            _react2.default.createElement(
+              _reactNative.Animated.View,
+              { style: [buttonStyle, animatedViewStyle], __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 215
+                }
+              },
+              this._renderButtonIcon()
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: "_renderButtonIcon",
+    value: function _renderButtonIcon() {
+      var _props = this.props,
+          icon = _props.icon,
+          btnOutRangeTxt = _props.btnOutRangeTxt,
+          buttonTextStyle = _props.buttonTextStyle,
+          buttonText = _props.buttonText;
+
+      if (icon) return icon;
+
+      var textColor = buttonTextStyle.color || "rgba(255,255,255,1)";
+
+      return _react2.default.createElement(
+        _reactNative.Animated.Text,
+        {
+          style: [styles.btnText, buttonTextStyle, {
+            color: this.anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [textColor, btnOutRangeTxt || textColor]
+            })
+          }],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 231
+          }
+        },
+        buttonText
+      );
+    }
+  }, {
+    key: "_renderActions",
+    value: function _renderActions() {
+      var _this4 = this;
+
+      var _props2 = this.props,
+          children = _props2.children,
+          verticalOrientation = _props2.verticalOrientation;
+
+
+      if (!this.state.active) return null;
+
+      var actionButtons = !Array.isArray(children) ? [children] : children;
+
+      var actionStyle = {
+        flex: 1,
+        alignSelf: "stretch",
+
+        justifyContent: verticalOrientation === "up" ? "flex-end" : "flex-start",
+        paddingTop: this.props.verticalOrientation === "down" ? this.props.spacing : 0,
+        zIndex: this.props.zIndex
+      };
+
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: actionStyle, pointerEvents: "box-none", __source: {
+            fileName: _jsxFileName,
+            lineNumber: 267
+          }
+        },
+        actionButtons.map(function (ActionButton, idx) {
+          return _react2.default.createElement(_ActionButtonItem2.default, babelHelpers.extends({
+            key: idx,
+            anim: _this4.anim
+          }, _this4.props, ActionButton.props, {
+            parentSize: _this4.props.size,
+            btnColor: _this4.props.btnOutRange,
+            onPress: function onPress() {
+              if (_this4.props.autoInactive) {
+                _this4.timeout = setTimeout(_this4.reset.bind(_this4), 200);
+              }
+              ActionButton.props.onPress();
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 269
+            }
+          }));
+        })
+      );
+    }
+  }, {
+    key: "_renderTappableBackground",
+    value: function _renderTappableBackground() {
+      return _react2.default.createElement(_reactNative.TouchableOpacity, {
+        activeOpacity: 1,
+        style: this.getOverlayStyles(),
+        onPress: this.reset.bind(this),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 290
+        }
+      });
+    }
+  }, {
+    key: "animateButton",
+    value: function animateButton() {
+      var animate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      if (this.state.active) return this.reset();
+
+      if (animate) {
+        _reactNative.Animated.spring(this.anim, { toValue: 1 }).start();
+      } else {
+        this.anim.setValue(1);
+      }
+
+      this.setState({ active: true, resetToken: this.state.resetToken });
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      var _this5 = this;
+
+      var animate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      if (this.props.onReset) this.props.onReset();
+
+      if (animate) {
+        _reactNative.Animated.spring(this.anim, { toValue: 0 }).start();
+      } else {
+        this.anim.setValue(0);
+      }
+
+      setTimeout(function () {
+        return _this5.setState({ active: false, resetToken: _this5.state.resetToken });
+      }, 250);
+    }
+  }]);
+  return ActionButton;
+}(_react.Component);
+
+exports.default = ActionButton;
+
+
+ActionButton.Item = _ActionButtonItem2.default;
+
+ActionButton.propTypes = {
+  resetToken: _propTypes2.default.any,
+  active: _propTypes2.default.bool,
+
+  position: _propTypes2.default.string,
+  elevation: _propTypes2.default.number,
+  zIndex: _propTypes2.default.number,
+
+  hideShadow: _propTypes2.default.bool,
+  shadowStyle: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array, _propTypes2.default.number]),
+
+  bgColor: _propTypes2.default.string,
+  bgOpacity: _propTypes2.default.number,
+  buttonColor: _propTypes2.default.string,
+  buttonTextStyle: _reactNative.Text.propTypes.style,
+  buttonText: _propTypes2.default.string,
+
+  offsetX: _propTypes2.default.number,
+  offsetY: _propTypes2.default.number,
+  spacing: _propTypes2.default.number,
+  size: _propTypes2.default.number,
+  autoInactive: _propTypes2.default.bool,
+  onPress: _propTypes2.default.func,
+  onPressIn: _propTypes2.default.func,
+  onPressOut: _propTypes2.default.func,
+  backdrop: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.object]),
+  degrees: _propTypes2.default.number,
+  verticalOrientation: _propTypes2.default.oneOf(["up", "down"]),
+  backgroundTappable: _propTypes2.default.bool,
+  activeOpacity: _propTypes2.default.number,
+
+  useNativeFeedback: _propTypes2.default.bool,
+  fixNativeFeedbackRadius: _propTypes2.default.bool,
+  nativeFeedbackRippleColor: _propTypes2.default.string,
+
+  testID: _propTypes2.default.string
+};
+
+ActionButton.defaultProps = {
+  resetToken: null,
+  active: false,
+  bgColor: "transparent",
+  bgOpacity: 1,
+  buttonColor: "rgba(0,0,0,1)",
+  buttonTextStyle: {},
+  buttonText: "+",
+  spacing: 20,
+  outRangeScale: 1,
+  autoInactive: true,
+  onPress: function onPress() {},
+  onPressIn: function onPressIn() {},
+  onPressOn: function onPressOn() {},
+  backdrop: false,
+  degrees: 45,
+  position: "right",
+  offsetX: 30,
+  offsetY: 30,
+  size: 56,
+  verticalOrientation: "up",
+  backgroundTappable: false,
+  useNativeFeedback: true,
+  activeOpacity: _shared.DEFAULT_ACTIVE_OPACITY,
+  fixNativeFeedbackRadius: false,
+  nativeFeedbackRippleColor: "rgba(255,255,255,0.75)",
+  testID: undefined
+};
+
+var styles = _reactNative.StyleSheet.create({
+  overlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    backgroundColor: "transparent"
+  },
+  btnText: {
+    marginTop: -4,
+    fontSize: 24,
+    backgroundColor: "transparent"
+  }
+});

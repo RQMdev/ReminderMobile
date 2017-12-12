@@ -79,7 +79,7 @@ export default class App extends Component {
     })
     .then( res =>	res.json() )
     .then( data => console.log(data) )
-    .then( () => { this.handleGetStickys() });
+    .then( () => this.handleGetStickys() );
   }
 
   handleDeleteSticky (sticky) {
@@ -97,19 +97,27 @@ export default class App extends Component {
     .then( () => { this.handleGetStickys() });
   }
 
-  handleImageUpload (formData) {
+  handleImageUpload (formData, currentSticky) {
     console.log('handleImageUpload Called!');
+    console.log(formData);
     const url = 'http://'+ SERVER_IP +':3001/stickys/image';
     const options = {
       method: 'POST',
       body: formData,
       header: {
+        'authorization': this.state.token,
         'content-type': 'multipart/form-data'
       }
     };
     fetch(url, options)
       // .then( res => res.json() )
-      .then( data => console.log(data) );
+      .then( data => data.json() )
+      .then( data => {
+        console.log(data)
+        currentSticky.image = data.path;
+        console.log(currentSticky);
+        this.handleEditSticky(currentSticky); 
+      } );
   }
 
   render() {
