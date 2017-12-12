@@ -22,6 +22,7 @@ export default class Dashboard extends React.Component {
     };
     this.setImage = this.setImage.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +58,16 @@ export default class Dashboard extends React.Component {
     this.props.screenProps.handleImageUpload(formData, this.state.currentSticky);
   }
 
+  handleDateChange (datePicked){
+    this.setState({
+      ...this.state,
+      currentSticky: { 
+        ...this.state.currentSticky,
+        datePicked
+      }
+    }, () => this.props.screenProps.handleEditSticky(this.state.currentSticky));
+  }
+
   toggleStickyMenuVisibility = sticky => {
     let currentSticky = sticky;
     if (this.state.isStickyMenuVisible) {
@@ -66,7 +77,7 @@ export default class Dashboard extends React.Component {
       isStickyMenuVisible: !this.state.isStickyMenuVisible,
       currentSticky
     });
-  };
+  }
 
   deleteCurrentSticky = () => {
     this.props.screenProps.handleDeleteSticky(this.state.currentSticky);
@@ -138,11 +149,11 @@ export default class Dashboard extends React.Component {
 
   displayRenameSticky = sticky => {
     this.setState({ currentSticky: sticky, isRenamePromptVisible: true });
-  };
+  }
 
   hideRenamePrompt = () => {
     this.setState({ isRenamePromptVisible: false, currentSticky: {} });
-  };
+  }
 
   renameSticky = value => {
     const updatedSticky = this.state.currentSticky;
@@ -159,11 +170,11 @@ export default class Dashboard extends React.Component {
     this.hideRenamePrompt();
     //   this.saveTaskList();
     // });
-  };
+  }
 
   saveTaskList = () => {
     AsyncStorage.setItem(storageKey, JSON.stringify(this.state.taskList));
-  };
+  }
 
   renderStickyList = () => {
     if (this.props.screenProps.stickys.length > 0) {
@@ -180,7 +191,7 @@ export default class Dashboard extends React.Component {
         <Text>Cliquer sur le bouton ajouter pour créer une tâche</Text>
       </View>
     );
-  };
+  }
 
   render() {
     return (
@@ -196,6 +207,7 @@ export default class Dashboard extends React.Component {
           onChangeStatusCallBack={this.toggleStickyPriority}
           setImage={this.setImage}
           handleImageUpload={this.handleImageUpload}
+          handleDateChange={this.handleDateChange}
         />
         <TextPrompt
           isVisible={this.state.isAddPromptVisible}

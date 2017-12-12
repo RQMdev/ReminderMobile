@@ -4,12 +4,14 @@ import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import { style } from './style';
 import PickImage from './PickImage';
+import MyDatePicker from './MyDatePicker';
 
 export default class MenuTask extends React.Component {
   constructor (props) {
     super(props);
     this.setImage = this.setImage.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   setImage (image) {
@@ -18,6 +20,10 @@ export default class MenuTask extends React.Component {
 
   handleImageUpload (formData) {
     this.props.handleImageUpload(formData);
+  }
+
+  handleDateChange (datePicked) {
+    this.props.handleDateChange(datePicked);
   }
 
   render () {
@@ -56,6 +62,7 @@ export default class MenuTask extends React.Component {
                   onPress={() => onChangeStatusCallBack()}
                 />
                 <PickImage setImage={this.setImage} handleImageUpload={this.handleImageUpload} />
+                <MyDatePicker handleDateChange={this.handleDateChange} />
               </View>
             </View>
           </TouchableWithoutFeedback>
