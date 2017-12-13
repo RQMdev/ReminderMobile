@@ -32,7 +32,7 @@ export default class MyDatePicker extends Component {
           }
           // ... You can check the source to find the other keys.
         }}
-        onDateChange={datePicked => this.props.handleDateChange(datePicked)}
+        onDateChange={(dateOnly, datePicked) => this.props.handleDateChange(datePicked)}
       />
     )
   }

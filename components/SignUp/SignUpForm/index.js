@@ -21,7 +21,7 @@ export default class SignUpForm extends React.Component {
 
 				// console.log('je suis ici');
 	handleSubmit() {
-		console.log('je suis ici');
+		console.log('je suis ici signUp/SignUpForm');
 		if (this.state.passwordConfirmed){
 			// Fetch Here
 			fetch('http://'+ SERVER_IP +':3001/users/signup', {
