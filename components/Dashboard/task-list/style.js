@@ -7,5 +7,8 @@ export const style = StyleSheet.create({
   },
   title: {
     color: 'white'
-  }
+  },
+  subtitle: {
+    color: 'white'
+  },
 });
