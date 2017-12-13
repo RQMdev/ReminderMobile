@@ -27,7 +27,7 @@ const TaskList = ({ taskList, onPressCallBack, onLongPressCallBack }) => (
           key={task._id}
           title={task.title}
           titleStyle={style.title}
-          subtitle={task.date}
+        
           onPress={() => onPressCallBack(task)}
           onLongPress={() => onLongPressCallBack(task)}
           hideChevron={true}
