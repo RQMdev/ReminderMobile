@@ -23,8 +23,8 @@
     "react-native-modal": "^2.5.0",
     "react-native-prompt": "^1.0.0",
     "react-native-scripts": "^1.7.0",
-    "react-navigation": "^1.0.0-beta.19",
-    "watchman": "^0.1.8"
+    "react-native-vector-icons": "^4.4.2",
+    "react-navigation": "^1.0.0-beta.19"
   },
   "devDependencies": {
     "eslint-config-rallycoding": "^3.2.0"

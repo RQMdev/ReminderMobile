@@ -58,10 +58,16 @@ export default class Dashboard extends React.Component {
     this.props.screenProps.handleImageUpload(formData, this.state.currentSticky);
   }
 
-  handleDateChange (datePicked){
+  handleDateChange (datePicked) {
+    if (datePicked) {
+      datePicked = new Date(datePicked).toLocaleString();
+      console.log('datePicked : ', datePicked);
+      datePicked = datePicked.slice(0, datePicked.length - 3);
+    }
+
     this.setState({
       ...this.state,
-      currentSticky: { 
+      currentSticky: {
         ...this.state.currentSticky,
         datePicked
       }
