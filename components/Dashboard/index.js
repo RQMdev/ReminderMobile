@@ -56,6 +56,7 @@ export default class Dashboard extends React.Component {
 
   handleImageUpload (formData) {
     this.props.screenProps.handleImageUpload(formData, this.state.currentSticky);
+    this.toggleStickyMenuVisibility();
   }
 
   handleDateChange (datePicked) {
@@ -71,7 +72,10 @@ export default class Dashboard extends React.Component {
         ...this.state.currentSticky,
         datePicked
       }
-    }, () => this.props.screenProps.handleEditSticky(this.state.currentSticky));
+    }, () => {
+      this.props.screenProps.handleEditSticky(this.state.currentSticky);
+      this.toggleStickyMenuVisibility()
+    });
   }
 
   toggleStickyMenuVisibility = sticky => {
