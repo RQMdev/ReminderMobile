@@ -74,7 +74,9 @@ export default class Dashboard extends React.Component {
       }
     }, () => {
       this.props.screenProps.handleEditSticky(this.state.currentSticky);
-      this.toggleStickyMenuVisibility()
+
+      this.toggleStickyMenuVisibility();
+
     });
   }
 
@@ -218,6 +220,7 @@ export default class Dashboard extends React.Component {
           setImage={this.setImage}
           handleImageUpload={this.handleImageUpload}
           handleDateChange={this.handleDateChange}
+          currentSticky={this.state.currentSticky}
         />
         <TextPrompt
           isVisible={this.state.isAddPromptVisible}

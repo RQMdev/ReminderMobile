@@ -62,7 +62,10 @@ export default class MenuTask extends React.Component {
                   onPress={() => onChangeStatusCallBack()}
                 />
                 <PickImage setImage={this.setImage} handleImageUpload={this.handleImageUpload} />
-                <MyDatePicker handleDateChange={this.handleDateChange} />
+                <MyDatePicker
+                  handleDateChange={this.handleDateChange}
+                  currentSticky={this.props.currentSticky}
+                 />
               </View>
             </View>
           </TouchableWithoutFeedback>
