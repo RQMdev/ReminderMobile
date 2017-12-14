@@ -4,6 +4,7 @@ import { NavigationAction } from 'react-navigation';
 import NavigatorService from './services/Navigator';
 import { NavigationApp } from './NavigationApp';
 import { SERVER_IP } from './ServerConfig';
+import { Notifications } from 'expo';
 
 
 export default class App extends Component {
@@ -19,6 +20,14 @@ export default class App extends Component {
     this.handleEditSticky = this.handleEditSticky.bind(this);
     this.handleDeleteSticky = this.handleDeleteSticky.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+  }
+
+  async componentDidMount() {
+    let result = await   
+    Permissions.askAsync(Permissions.NOTIFICATIONS);
+    if (Constants.lisDevice && result.status === 'granted') {
+     console.log('Notification permissions granted.')
+    }
   }
 
   handleToken(token){
@@ -79,7 +88,33 @@ export default class App extends Component {
     })
     .then( res =>	res.json() )
     .then( data => console.log(data) )
+    .then( sticky => this.handleNotification(sticky))
     .then( () => this.handleGetStickys() );
+  }
+
+  handleNotification(sticky){
+
+  const localNotification = {
+      title: 'Reminder',
+      body: sticky.title, 
+      ios: { 
+        sound: true,
+      },
+      android: {
+        sound: true, 
+        priority: 'high', 
+        sticky: false, 
+        vibrate: true,
+      }
+    };
+
+  let t = new Date(sticky.datePicked);
+
+    const schedulingOptions = {
+      time: t, 
+    };
+
+    let notificationId = Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions)
   }
 
   handleDeleteSticky (sticky) {
