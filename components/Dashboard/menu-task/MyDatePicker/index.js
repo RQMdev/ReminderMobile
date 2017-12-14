@@ -3,10 +3,13 @@ import DatePicker from 'react-native-datepicker'
 
 export default class MyDatePicker extends Component {
   constructor(props){
-    super(props)
-    this.state = {date:"12-12-2017"}
+    super(props);
+    this.state = {date:''};
   }
 
+  componentDidMount() {
+    this.setState({ date: this.props.currentSticky.datePicked || new Date(Date.now()).toLocaleString('fr-FR') });
+  }
 
   render(){
     return (
