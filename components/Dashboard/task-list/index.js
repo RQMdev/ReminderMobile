@@ -37,7 +37,7 @@ class TaskList extends Component {
               key={task._id}
               title={task.title}
               titleStyle={style.title}
-              subtitle={task.datePicked}
+              subtitle={new Date(task.datePicked).toLocaleString()}
               subtitleStyle={style.subtitle}
               onPress={() => onPressCallBack(task)}
               onLongPress={() => onLongPressCallBack(task)}

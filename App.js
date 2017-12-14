@@ -4,7 +4,7 @@ import { NavigationAction } from 'react-navigation';
 import NavigatorService from './services/Navigator';
 import { NavigationApp } from './NavigationApp';
 import { SERVER_IP } from './ServerConfig';
-import { Notifications } from 'expo';
+import { Notifications, Permissions, Constants } from 'expo';
 
 
 export default class App extends Component {
@@ -23,7 +23,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    let result = await   
+    let result = await
     Permissions.askAsync(Permissions.NOTIFICATIONS);
     if (Constants.lisDevice && result.status === 'granted') {
      console.log('Notification permissions granted.')
@@ -87,34 +87,41 @@ export default class App extends Component {
       body: JSON.stringify(sticky)
     })
     .then( res =>	res.json() )
-    .then( data => console.log(data) )
-    .then( sticky => this.handleNotification(sticky))
+    .then( data => {
+        console.log(data);
+        this.handleNotification(data);
+      }
+    )
     .then( () => this.handleGetStickys() );
   }
 
-  handleNotification(sticky){
+  async handleNotification(sticky){
+    console.log('Sticky in handleNotification : ', sticky);
+    const localNotification = {
+        title: 'Reminder',
+        body: sticky.content,
+        ios: {
+          sound: true,
+        },
+        android: {
+          sound: true,
+          priority: 'high',
+          sticky: false,
+          vibrate: true,
+        }
+      };
 
-  const localNotification = {
-      title: 'Reminder',
-      body: sticky.title, 
-      ios: { 
-        sound: true,
-      },
-      android: {
-        sound: true, 
-        priority: 'high', 
-        sticky: false, 
-        vibrate: true,
-      }
-    };
+    let t = new Date(sticky.datePicked);
+    // t.setSeconds(t.getSeconds() + 10);
+    // t.setHours(t.getHours() - 1);
+    console.log('T is : ', t);
 
-  let t = new Date(sticky.datePicked);
+      const schedulingOptions = {
+        time: t,
+      };
 
-    const schedulingOptions = {
-      time: t, 
-    };
-
-    let notificationId = Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions)
+    let notificationId = await Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions);
+    console.log('Notification ID : ', notificationId);
   }
 
   handleDeleteSticky (sticky) {
@@ -151,7 +158,7 @@ export default class App extends Component {
         console.log(data)
         currentSticky.image = data.path;
         console.log(currentSticky);
-        this.handleEditSticky(currentSticky); 
+        this.handleEditSticky(currentSticky);
       } );
   }
 

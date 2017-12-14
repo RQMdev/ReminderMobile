@@ -8,7 +8,7 @@ export default class MyDatePicker extends Component {
   }
 
   componentDidMount() {
-    this.setState({ date: this.props.currentSticky.datePicked || new Date(Date.now()).toLocaleString('fr-FR') });
+    this.setState({ date: new Date(this.props.currentSticky.datePicked).toLocaleString() || new Date(Date.now()).toLocaleString('fr-FR') });
   }
 
   render(){
